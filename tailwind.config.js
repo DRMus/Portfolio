@@ -14,6 +14,9 @@ export default {
       height: {
         "portfolio-block": "100vh"
       },
+      boxShadow: {
+        "portfolio-purple": "0 0 20px rgba(126, 34, 206, 0)"
+      }
 
     },
   },

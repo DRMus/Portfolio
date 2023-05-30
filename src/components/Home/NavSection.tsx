@@ -33,7 +33,8 @@ const NavSection: FC<Props> = ({
 
   const componentClassNames = useMemo(
     () => ({
-      parent: "relative overflow-hidden grow h-full w-full rounded-lg cursor-pointer",
+      parent:
+        "relative overflow-hidden grow h-full w-full rounded-lg cursor-pointer transition-all duration-[350ms] hover:shadow-portfolio-purple",
       mouseHover:
         "mouse absolute z-[-1] bg-gray-300/10 w-52 h-52 rounded-full -translate-x-1/2 -translate-y-1/2",
       section: classNames(

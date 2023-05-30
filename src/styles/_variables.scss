@@ -10,4 +10,5 @@ html {
   --animation-show-opacity: showElementOpacity 450ms ease-in-out;
   --animation-show-bottom-top-bounce: showElementBottomToTop_Bounce 550ms ease-in-out;
   --animation-show-top-bottom-bounce: showElementTopToBottom_Bounce 550ms ease-in-out;
+  --nav-section-shadow: 0 0 7px 7px calc(var(--text-purple) + "dd")
 }

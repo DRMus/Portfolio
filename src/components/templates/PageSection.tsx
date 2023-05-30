@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { DetailedHTMLProps, FC, HTMLAttributes, forwardRef } from "react";
+import { DetailedHTMLProps, HTMLAttributes, forwardRef } from "react";
 
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement> {}
 
