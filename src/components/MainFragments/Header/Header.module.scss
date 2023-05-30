@@ -1,0 +1,5 @@
+@import url("../../../styles/_variables.scss");
+
+.showHeader {
+  animation: var(--animation-show-top-bottom-bounce);
+}

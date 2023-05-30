@@ -1,0 +1,69 @@
+import classNames from "classnames";
+import { FC, HTMLAttributes, useMemo, useState } from "react";
+import { IPosition } from "../../interfaces";
+import { Link } from "react-router-dom";
+
+interface Props extends HTMLAttributes<HTMLElement> {
+  page: string;
+}
+
+const NavSection: FC<Props> = ({
+  children,
+  className,
+  page,
+  onMouseMove,
+  onMouseLeave,
+  ...props
+}) => {
+  const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
+  const [mousePosition, setMousePosition] = useState<IPosition>({ x: 0, y: 0 });
+
+  const handlerMouseMove = (event: React.MouseEvent<HTMLElement, MouseEvent> | any) => {
+    if (!isMouseOver) {
+      setIsMouseOver(true);
+    }
+    setMousePosition({ x: event.nativeEvent.layerX, y: event.nativeEvent.layerY });
+    onMouseMove && onMouseMove(event);
+  };
+
+  const handlerMouseLeave = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    setIsMouseOver(false);
+    onMouseLeave && onMouseLeave(event);
+  };
+
+  const componentClassNames = useMemo(
+    () => ({
+      parent: "relative overflow-hidden grow h-full w-full rounded-lg cursor-pointer",
+      mouseHover:
+        "mouse absolute z-[-1] bg-gray-300/10 w-52 h-52 rounded-full -translate-x-1/2 -translate-y-1/2",
+      section: classNames(
+        "group h-full w-full rounded-lg border-4 border-gray-500/30 bg-gray-500/30 transition-colors duration-[350ms] backdrop-blur-2xl",
+        "hover:border-portfolio-purple/50 hover:bg-portfolio-purple/20",
+        className
+      ),
+    }),
+    [className]
+  );
+
+  return (
+    <Link
+      to={page}
+      state={"byNavBar"}
+      className={componentClassNames.parent}
+      onMouseMove={handlerMouseMove}
+      onMouseLeave={handlerMouseLeave}
+    >
+      {isMouseOver && (
+        <div
+          className={componentClassNames.mouseHover}
+          style={{ top: mousePosition.y, left: mousePosition.x }}
+        ></div>
+      )}
+      <div className={componentClassNames.section} {...props}>
+        {children}
+      </div>
+    </Link>
+  );
+};
+
+export default NavSection;

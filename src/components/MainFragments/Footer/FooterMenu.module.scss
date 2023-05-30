@@ -1,0 +1,5 @@
+@import url("../../../styles/_variables.scss");
+
+.showFooter {
+  animation: var(--animation-show-bottom-top-bounce);
+}
