@@ -1,23 +1,52 @@
 import classNames from "classnames";
-import { FC, HTMLAttributes } from "react";
-import { Link, To } from "react-router-dom";
+import { FC, HTMLAttributes, useContext, useState } from "react";
+import { useNavigate, To, useLocation } from "react-router-dom";
+import { MainContextValues } from "../../../contexts/MainContext";
 
-interface Props extends HTMLAttributes<HTMLElement> {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   to: To;
 }
 
-const FooterMenuItem: FC<Props> = ({ children, className, ...props }) => {
+const FooterMenuItem: FC<Props> = ({ to, children, className, onClick, ...props }) => {
+  const { isPageChanging, changeIsPageChanging } = useContext(MainContextValues);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const [isSelected, setIsSelected] = useState<boolean>(false);
+
+  const handlerMouseClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    if (location.pathname.includes(to.toString()) || isPageChanging) {
+      return;
+    }
+
+    setIsSelected(true);
+    changeIsPageChanging(true);
+    setTimeout(() => {
+      navigate(to);
+    }, 500);
+    setTimeout(() => {
+      changeIsPageChanging(false);
+      setIsSelected(false);
+    }, 1000);
+    onClick && onClick(event);
+  };
   return (
-    <Link
+    <div
       className={classNames(
-        "font-bold text-portfolio-white/30 text-2xl transition-all duration-300",
+        "font-bold text-portfolio-white/30 text-2xl transition-all duration-300 cursor-pointer",
         "group-hover:text-portfolio-white/70 hover:!text-portfolio-purple hover:!text-3xl",
+        {
+          "!text-portfolio-purple/60":
+            (location.pathname.includes(to.toString()) || isSelected),
+        },
         className
       )}
+      onClick={handlerMouseClick}
       {...props}
     >
       {children}
-    </Link>
+    </div>
   );
 };
 

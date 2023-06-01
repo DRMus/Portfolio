@@ -16,8 +16,13 @@ function initialConditionIsHomePage(location: Location, navigationType: string):
 }
 
 const MainPageView = () => {
-  const { isPageSelected, contentBlockOldHeight, setContentBlockOldHeight } =
-    useContext(MainContextValues);
+  const {
+    isPageSelected,
+    contentBlockOldHeight,
+    isPageChanging,
+    changeIsScrollAnimationPlaying,
+    setContentBlockOldHeight,
+  } = useContext(MainContextValues);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -28,7 +33,7 @@ const MainPageView = () => {
   );
   const [isPageDone, setIsPageDone] = useState<boolean>(true);
 
-  const isScrollingToHomePage = useRef<boolean>(false);
+  const isScrollingToHomePageKey = useRef<boolean>(false);
   const viewBlockRef = useRef<HTMLElement>(null);
   const homeBlockRef = useRef<HTMLElement>(null);
   const mainBlockRef = useRef<HTMLElement>(null);
@@ -49,9 +54,11 @@ const MainPageView = () => {
     let { disableScroll, enableScroll } = scrollEvents();
 
     setIsPageDone(false);
+    changeIsScrollAnimationPlaying(true);
     disableScroll();
     setTimeout(() => {
       callbackAfter();
+      changeIsScrollAnimationPlaying(false);
       setIsPageDone(true);
       enableScroll();
     }, 700);
@@ -78,7 +85,7 @@ const MainPageView = () => {
   };
 
   const showHomePage = () => {
-    isScrollingToHomePage.current = true;
+    isScrollingToHomePageKey.current = true;
     setIsHomePageVisiable(true);
   };
 
@@ -115,9 +122,9 @@ const MainPageView = () => {
   }, [viewBlockRef, location]);
 
   useEffect(() => {
-    if (isScrollingToHomePage.current) {
+    if (isScrollingToHomePageKey.current) {
       scrollToHomePage();
-      isScrollingToHomePage.current = false;
+      isScrollingToHomePageKey.current = false;
     }
   }, [isHomePageVisiable]);
 
@@ -154,6 +161,7 @@ const MainPageView = () => {
             {isPageSelected && <Outlet context={[viewBlockRef]} />}
           </section>
         </div>
+        {isPageChanging && <div className={styles.gradientSlider}></div>}
       </main>
       {!isHomePageVisiable && <FooterMenu />}
     </>

@@ -7,13 +7,19 @@ interface Props {
 
 interface MainContext {
   isPageSelected: boolean;
+  isScrollAnimationPlaying: boolean;
+  isPageChanging: boolean;
   contentBlockOldHeight: RefObject<number>;
   showSelectedPage: (state: boolean) => void;
+  changeIsScrollAnimationPlaying: (state: boolean) => void;
+  changeIsPageChanging: (state: boolean) => void;
   setContentBlockOldHeight: (ref: RefObject<HTMLDivElement> | undefined) => void;
 }
 
 export const MainContextValues = createContext<MainContext>({
   isPageSelected: false,
+  isScrollAnimationPlaying: false,
+  isPageChanging: false,
   contentBlockOldHeight: { current: -1 },
   showSelectedPage: function (): void {
     throw new Error("Function not implemented.");
@@ -21,10 +27,18 @@ export const MainContextValues = createContext<MainContext>({
   setContentBlockOldHeight: function () {
     throw new Error("Function not implemented.");
   },
+  changeIsScrollAnimationPlaying: function (): void {
+    throw new Error("Function not implemented.");
+  },
+  changeIsPageChanging: function (): void {
+    throw new Error("Function not implemented.");
+  }
 });
 
 export const MainContextProvider: FC<Props> = ({ children }) => {
   const [isPageSelected, setIsPageSelected] = useState<boolean>(false);
+  const [isScrollAnimationPlaying, setIsScrollAnimationPlaying] = useState<boolean>(false);
+  const [isPageChanging, setIsPageChanging] = useState<boolean>(false);
 
   const contentBlockOldHeight = useRef<number>(-1);
 
@@ -33,6 +47,14 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
   const showSelectedPage = (state: boolean) => {
     setIsPageSelected(state);
   };
+
+  const changeIsScrollAnimationPlaying = (state: boolean) => {
+    setIsScrollAnimationPlaying(state);
+  };
+
+  const changeIsPageChanging = (state: boolean) => {
+    setIsPageChanging(state)
+  }
 
   const setContentBlockOldHeight = (ref: RefObject<HTMLDivElement> | undefined) => {
     if (!ref) {
@@ -55,8 +77,12 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
 
   const value: MainContext = {
     isPageSelected,
+    isScrollAnimationPlaying,
+    isPageChanging,
     contentBlockOldHeight,
     showSelectedPage,
+    changeIsScrollAnimationPlaying,
+    changeIsPageChanging,
     setContentBlockOldHeight,
   };
 

@@ -1,8 +1,9 @@
 import classNames from "classnames";
-import { FC, HTMLAttributes, useMemo, useState } from "react";
+import { FC, HTMLAttributes, useContext, useMemo, useState } from "react";
 import { IPosition } from "../../interfaces";
 import { Link } from "react-router-dom";
 import { LOCATION_STATES } from "../../utils/constants";
+import { MainContextValues } from "../../contexts/MainContext";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   page: string;
@@ -14,8 +15,11 @@ const NavSection: FC<Props> = ({
   page,
   onMouseMove,
   onMouseLeave,
+  onClick,
   ...props
 }) => {
+  const { isScrollAnimationPlaying } = useContext(MainContextValues);
+
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<IPosition>({ x: 0, y: 0 });
 
@@ -30,6 +34,13 @@ const NavSection: FC<Props> = ({
   const handlerMouseLeave = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     setIsMouseOver(false);
     onMouseLeave && onMouseLeave(event);
+  };
+
+  const handlerMouseClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
+    if (isScrollAnimationPlaying) {
+      event.preventDefault();
+    }
+    onClick && onClick(event);
   };
 
   const componentClassNames = useMemo(
@@ -54,6 +65,7 @@ const NavSection: FC<Props> = ({
       className={componentClassNames.parent}
       onMouseMove={handlerMouseMove}
       onMouseLeave={handlerMouseLeave}
+      onClick={handlerMouseClick}
     >
       {isMouseOver && (
         <div

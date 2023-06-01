@@ -13,10 +13,10 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
         <NavSection page="about" onClick={() => showSelectedPage(true)}>
           <NavSectionHeader>About Me</NavSectionHeader>
         </NavSection>
-        <NavSection page="projects">
+        <NavSection page="projects" onClick={() => showSelectedPage(true)}>
           <NavSectionHeader>Projects</NavSectionHeader>
         </NavSection>
-        <NavSection page="contacts">
+        <NavSection page="contacts" onClick={() => showSelectedPage(true)}>
           <NavSectionHeader>Contacts</NavSectionHeader>
         </NavSection>
       </nav>

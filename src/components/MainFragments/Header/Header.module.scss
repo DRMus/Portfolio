@@ -3,3 +3,7 @@
 .showHeader {
   animation: var(--animation-show-top-bottom-bounce);
 }
+
+.hideHeader {
+  animation: var(--animation-hide-top-bottom-bounce);
+}
