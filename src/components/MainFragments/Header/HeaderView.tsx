@@ -2,8 +2,13 @@ import { HomeFilled } from "@ant-design/icons";
 import classNames from "classnames";
 
 import styles from "./Header.module.scss"
+import { FC } from "react";
 
-const HeaderView = () => {
+interface Props {
+  goHome: () => void;
+}
+
+const HeaderView: FC<Props> = (props) => {
   return (
     <header className="fixed top-0 left-0 right-0 py-6 z-20">
       <div className="my-0 mx-auto text-center">
@@ -13,6 +18,7 @@ const HeaderView = () => {
             "hover:text-portfolio-purple",
             styles.showHeader
           )}
+          onClick={props.goHome}
         />
       </div>
     </header>

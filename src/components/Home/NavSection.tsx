@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { FC, HTMLAttributes, useMemo, useState } from "react";
 import { IPosition } from "../../interfaces";
 import { Link } from "react-router-dom";
+import { LOCATION_STATES } from "../../utils/constants";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   page: string;
@@ -49,7 +50,7 @@ const NavSection: FC<Props> = ({
   return (
     <Link
       to={page}
-      state={"byNavBar"}
+      state={LOCATION_STATES.BY_NAV_BAR}
       className={componentClassNames.parent}
       onMouseMove={handlerMouseMove}
       onMouseLeave={handlerMouseLeave}

@@ -9,15 +9,14 @@ export default {
         "portfolio-purple": "#7e22ce",
       },
       width: {
-        "portfolio-main": "1300px"
+        "portfolio-main": "1300px",
       },
       height: {
-        "portfolio-block": "100vh"
+        "portfolio-block": "100vh",
       },
       boxShadow: {
-        "portfolio-purple": "0 0 20px rgba(126, 34, 206, 0)"
-      }
-
+        "portfolio-purple": "0 0 20px rgba(126, 34, 206, 0)",
+      },
     },
   },
   plugins: [],

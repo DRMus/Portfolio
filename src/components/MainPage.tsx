@@ -1,12 +1,11 @@
-
-import { MainContextProvider } from '../contexts/MainContext'
-import MainPageView from './MainPageView'
+import { MainContextProvider } from "../contexts/MainContext";
+import MainPageView from "./MainPageView";
 const MainPage = () => {
   return (
     <MainContextProvider>
-      <MainPageView/>
+      <MainPageView />
     </MainContextProvider>
-  )
-}
+  );
+};
 
-export default MainPage
+export default MainPage;
