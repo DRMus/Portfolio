@@ -1,4 +1,12 @@
-import { FC, ReactNode, RefObject, createContext, useEffect, useRef, useState } from "react";
+import {
+  FC,
+  ReactNode,
+  RefObject,
+  createContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useLocation } from "react-router-dom";
 
 interface Props {
@@ -10,6 +18,7 @@ interface MainContext {
   isScrollAnimationPlaying: boolean;
   isPageChanging: boolean;
   contentBlockOldHeight: RefObject<number>;
+  mainBlockRef: RefObject<HTMLElement>;
   showSelectedPage: (state: boolean) => void;
   changeIsScrollAnimationPlaying: (state: boolean) => void;
   changeIsPageChanging: (state: boolean) => void;
@@ -21,6 +30,7 @@ export const MainContextValues = createContext<MainContext>({
   isScrollAnimationPlaying: false,
   isPageChanging: false,
   contentBlockOldHeight: { current: -1 },
+  mainBlockRef: {current: null},
   showSelectedPage: function (): void {
     throw new Error("Function not implemented.");
   },
@@ -32,7 +42,7 @@ export const MainContextValues = createContext<MainContext>({
   },
   changeIsPageChanging: function (): void {
     throw new Error("Function not implemented.");
-  }
+  },
 });
 
 export const MainContextProvider: FC<Props> = ({ children }) => {
@@ -41,6 +51,7 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
   const [isPageChanging, setIsPageChanging] = useState<boolean>(false);
 
   const contentBlockOldHeight = useRef<number>(-1);
+  const mainBlockRef = useRef<HTMLElement>(null);
 
   const location = useLocation();
 
@@ -53,8 +64,8 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
   };
 
   const changeIsPageChanging = (state: boolean) => {
-    setIsPageChanging(state)
-  }
+    setIsPageChanging(state);
+  };
 
   const setContentBlockOldHeight = (ref: RefObject<HTMLDivElement> | undefined) => {
     if (!ref) {
@@ -80,6 +91,7 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
     isScrollAnimationPlaying,
     isPageChanging,
     contentBlockOldHeight,
+    mainBlockRef,
     showSelectedPage,
     changeIsScrollAnimationPlaying,
     changeIsPageChanging,

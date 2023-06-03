@@ -20,6 +20,7 @@ const MainPageView = () => {
     isPageSelected,
     contentBlockOldHeight,
     isPageChanging,
+    mainBlockRef,
     changeIsScrollAnimationPlaying,
     setContentBlockOldHeight,
   } = useContext(MainContextValues);
@@ -36,7 +37,6 @@ const MainPageView = () => {
   const isScrollingToHomePageKey = useRef<boolean>(false);
   const viewBlockRef = useRef<HTMLElement>(null);
   const homeBlockRef = useRef<HTMLElement>(null);
-  const mainBlockRef = useRef<HTMLElement>(null);
   const contentBlockRef = useRef<HTMLDivElement>(null);
 
   const scrolltoElement = (refElement: RefObject<HTMLElement>, callbackAfter: () => void) => {
@@ -77,8 +77,7 @@ const MainPageView = () => {
 
     let requiredScrollPosition = scrollTop + (newHeight - oldHeight);
 
-    console.log(oldHeight, newHeight, scrollTop, mainBlockRef);
-    
+    // console.log(oldHeight, newHeight, scrollTop, mainBlockRef);
 
     mainBlockRef.current.scrollTo(0, requiredScrollPosition);
 
@@ -158,8 +157,6 @@ const MainPageView = () => {
     ),
     contentSection: "w-full h-full",
   };
-
-  
 
   return (
     <>

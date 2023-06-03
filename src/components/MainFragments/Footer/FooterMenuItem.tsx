@@ -8,7 +8,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 const FooterMenuItem: FC<Props> = ({ to, children, className, onClick, ...props }) => {
-  const { isPageChanging, changeIsPageChanging } = useContext(MainContextValues);
+  const { isPageChanging, mainBlockRef, changeIsPageChanging } = useContext(MainContextValues);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const FooterMenuItem: FC<Props> = ({ to, children, className, onClick, ...props 
     changeIsPageChanging(true);
     setTimeout(() => {
       navigate(to);
-      window.scrollTo(0, 0);
+      mainBlockRef.current?.scrollTo(0, 0);
     }, 500);
     setTimeout(() => {
       changeIsPageChanging(false);

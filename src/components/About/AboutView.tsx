@@ -10,7 +10,7 @@ const AboutView = () => {
   return (
     <PageSection
       ref={viewBlockRef}
-      className="COMP_AboutView w-full"
+      className="COMP_AboutView w-full h-[2000px]"
     >
       <div className="text space-y-2">
         <TextHeader>About Me</TextHeader>
