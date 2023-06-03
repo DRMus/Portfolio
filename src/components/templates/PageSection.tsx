@@ -5,13 +5,13 @@ interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLEleme
 
 const PageSection = forwardRef<HTMLElement, Props>(({ className, children, ...props }, ref) => {
   return (
-    <section
+    <article
       ref={ref}
-      className={classNames("w-portfolio-main min-h-portfolio-block my-0 mx-auto", className)}
+      className={classNames("w-portfolio-main min-h-portfolio-block my-0 mx-auto pt-[200px]", className)}
       {...props}
     >
       {children}
-    </section>
+    </article>
   );
 });
 

@@ -1,6 +1,7 @@
 import { useOutletContext } from "react-router";
 import { TOutletContext } from "../../interfaces";
 import PageSection from "../templates/PageSection";
+import TextHeader from "../templates/TextHeader";
 
 const ContactsView = () => {
   const [viewBlockRef] = useOutletContext<TOutletContext>();
@@ -8,10 +9,10 @@ const ContactsView = () => {
   return (
     <PageSection
       ref={viewBlockRef}
-      className="COMP_ContactsView w-full flex justify-between items-center"
+      className="COMP_ContactsView w-full"
     >
       <div className="text space-y-2">
-        <h1 className="text-portfolio-purple font-bold text-4xl">Contacts</h1>
+        <TextHeader>Contacts</TextHeader>
         
       </div>
     </PageSection>

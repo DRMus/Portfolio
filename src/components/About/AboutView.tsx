@@ -2,6 +2,7 @@ import Photo from "../../assets/photo.jpg";
 import { useOutletContext } from "react-router";
 import { TOutletContext } from "../../interfaces";
 import PageSection from "../templates/PageSection";
+import TextHeader from "../templates/TextHeader";
 
 const AboutView = () => {
   const [viewBlockRef] = useOutletContext<TOutletContext>();
@@ -9,10 +10,10 @@ const AboutView = () => {
   return (
     <PageSection
       ref={viewBlockRef}
-      className="COMP_AboutView w-full flex justify-between items-center"
+      className="COMP_AboutView w-full"
     >
       <div className="text space-y-2">
-        <h1 className="text-portfolio-purple font-bold text-4xl">About Me</h1>
+        <TextHeader>About Me</TextHeader>
         <div className="text-2xl text-portfolio-white font-medium">
           <p>Muslimov Damir</p>
           <p>21 y/o</p>

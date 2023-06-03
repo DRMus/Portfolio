@@ -154,8 +154,8 @@ const MainPageView = () => {
     <>
       {!isHomePageVisiable && <HeaderView goHome={showHomePage} />}
       <main className={componentClassNames.main} ref={mainBlockRef}>
+        <div className={componentClassNames.bgGradient}></div>
         <div className={componentClassNames.content} ref={contentBlockRef}>
-          <div className={componentClassNames.bgGradient}></div>
           <section className={componentClassNames.contentSection}>
             {isHomePageVisiable && <HomeView ref={homeBlockRef} />}
             {isPageSelected && <Outlet context={[viewBlockRef]} />}

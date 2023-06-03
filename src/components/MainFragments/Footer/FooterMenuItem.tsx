@@ -24,6 +24,7 @@ const FooterMenuItem: FC<Props> = ({ to, children, className, onClick, ...props 
     changeIsPageChanging(true);
     setTimeout(() => {
       navigate(to);
+      window.scrollTo(0, 0);
     }, 500);
     setTimeout(() => {
       changeIsPageChanging(false);
@@ -34,7 +35,7 @@ const FooterMenuItem: FC<Props> = ({ to, children, className, onClick, ...props 
   return (
     <div
       className={classNames(
-        "font-bold text-portfolio-white/30 text-2xl transition-all duration-300 cursor-pointer",
+        "font-bold text-portfolio-white/30 text-2xl transition-all duration-300 cursor-pointer select-none",
         "group-hover:text-portfolio-white/70 hover:!text-portfolio-purple hover:!text-3xl",
         {
           "!text-portfolio-purple/60":
