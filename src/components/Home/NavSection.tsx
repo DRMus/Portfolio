@@ -1,9 +1,11 @@
 import classNames from "classnames";
 import { FC, HTMLAttributes, useContext, useMemo, useState } from "react";
 import { IPosition } from "../../interfaces";
-import { Link } from "react-router-dom";
+import { Link, useNavigationType } from "react-router-dom";
 import { LOCATION_STATES } from "../../utils/constants";
 import { MainContextValues } from "../../contexts/MainContext";
+
+import "./HomeView.scss";
 
 interface Props extends HTMLAttributes<HTMLElement> {
   page: string;
@@ -19,6 +21,8 @@ const NavSection: FC<Props> = ({
   ...props
 }) => {
   const { isScrollAnimationPlaying } = useContext(MainContextValues);
+
+  const navigationType = useNavigationType();
 
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<IPosition>({ x: 0, y: 0 });
@@ -45,8 +49,10 @@ const NavSection: FC<Props> = ({
 
   const componentClassNames = useMemo(
     () => ({
-      parent:
+      parent: classNames(
         "relative overflow-hidden grow h-full w-full rounded-lg cursor-pointer transition-all duration-[350ms] hover:shadow-portfolio-purple",
+        { "showNavBar": navigationType === "POP" }
+      ),
       mouseHover:
         "mouse absolute z-[-1] bg-gray-300/10 w-52 h-52 rounded-full -translate-x-1/2 -translate-y-1/2",
       section: classNames(

@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLLabelElement> {
 
 const TextLabel: FC<Props> = ({children, className, ...props}) => {
   return (
-    <label className={classNames("", className)} {...props}>{children}</label>
+    <label className={classNames("block text-lg text-gray-500 font-medium mb-2 mt-4", className)} {...props}>{children}</label>
   )
 }
 

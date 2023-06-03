@@ -68,5 +68,29 @@
   }
 }
 
+@keyframes showBlockScale {
+  0% {
+    transform: scale(0.7);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 
+@keyframes showBlockTranslateLeftToRight {
+  0% {
+    transform: translateX(-10%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
+@keyframes showBlockTranslateRightToLeft {
+  0% {
+    transform: translateX(10%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}

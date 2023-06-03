@@ -9,14 +9,12 @@ const ProjectsView = () => {
   const [viewBlockRef] = useOutletContext<TOutletContext>();
 
   return (
-    <PageSection
-      ref={viewBlockRef}
-      className="COMP_ProjectsView w-full"
-    >
-      {/* <TextHeader className="text-4xl">Projects</TextHeader> */}
-      
-        <ProjectsList/>
-      
+    <PageSection ref={viewBlockRef} className="COMP_ProjectsView w-full">
+      <div className="mb-8">
+        <TextHeader className="text-5xl ">Projects</TextHeader>
+      </div>
+
+      <ProjectsList />
     </PageSection>
   );
 };

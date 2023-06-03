@@ -66,7 +66,9 @@ const MainPageView = () => {
 
   const scrollToHomePage = () => {
     if (!mainBlockRef.current || !contentBlockRef.current || !contentBlockOldHeight.current) {
-      return;
+      throw new Error(
+        `some block didn't find: \nmainBlockRef - ${mainBlockRef}\ncontentBlockRef - ${contentBlockRef}\ncontentBlockOldHeight - ${contentBlockOldHeight}`
+      );
     }
 
     let oldHeight = contentBlockOldHeight.current;
@@ -78,6 +80,7 @@ const MainPageView = () => {
     mainBlockRef.current.scrollTo(0, requiredScrollPosition);
 
     const callbackAfter = () => {
+      isScrollingToHomePageKey.current = false;
       navigate("/");
     };
 
@@ -124,17 +127,20 @@ const MainPageView = () => {
   useEffect(() => {
     if (isScrollingToHomePageKey.current) {
       scrollToHomePage();
-      isScrollingToHomePageKey.current = false;
     }
   }, [isHomePageVisiable]);
 
   useLayoutEffect(() => {
-    if (isPageSelected && !isHomePageVisiable) {
+    if (!isPageChanging && isPageSelected && !isHomePageVisiable) {
       setContentBlockOldHeight(contentBlockRef);
-    } else {
-      setContentBlockOldHeight(undefined);
+      return;
     }
-  }, [isPageSelected, isHomePageVisiable]);
+
+    if (!isScrollingToHomePageKey.current) {
+      setContentBlockOldHeight(undefined);
+      return;
+    }
+  }, [isPageChanging, isPageSelected, isHomePageVisiable]);
 
   const componentClassNames = {
     main: classNames("relative scroll-config w-full h-full ", {
@@ -149,6 +155,8 @@ const MainPageView = () => {
     ),
     contentSection: "w-full h-full",
   };
+
+  
 
   return (
     <>

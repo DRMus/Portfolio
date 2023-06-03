@@ -13,5 +13,6 @@ html {
   --animation-hide-bottom-top-bounce: hideElementBottomToTop_Bounce 550ms ease-in-out;
   --animation-hide-top-bottom-bounce: hideElementTopToBottom_Bounce 550ms ease-in-out;
   --animation-show-opacity-slider: showElementOpacitySlider 1000ms ease-in-out;
+  --animation-show-scale: showBlockScale 400ms ease-in-out;
   --nav-section-shadow: 0 0 7px 7px calc(var(--text-purple) + "dd")
 }
