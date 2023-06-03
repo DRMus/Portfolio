@@ -77,6 +77,9 @@ const MainPageView = () => {
 
     let requiredScrollPosition = scrollTop + (newHeight - oldHeight);
 
+    console.log(oldHeight, newHeight, scrollTop, mainBlockRef);
+    
+
     mainBlockRef.current.scrollTo(0, requiredScrollPosition);
 
     const callbackAfter = () => {

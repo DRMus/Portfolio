@@ -8,7 +8,7 @@ import PageSection from "../templates/PageSection";
 const HomeView = forwardRef<HTMLElement>((_, ref) => {
   const { showSelectedPage } = useContext(MainContextValues);
   return (
-    <PageSection ref={ref} className="COMP_HomeView flex items-center h-portfolio-block w-full !pt-0">
+    <PageSection ref={ref} className="COMP_HomeView flex items-center h-portfolio-block w-full !p-0">
       <nav className="flex items-center justify-between h-3/4 w-full space-x-8">
         <NavSection page="about" onClick={() => showSelectedPage(true)}>
           <NavSectionHeader>About Me</NavSectionHeader>

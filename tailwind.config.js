@@ -8,6 +8,7 @@ export default {
         "portfolio-white": "#f1f5f9",
         "portfolio-purple": "#7e22ce",
         "portfolio-purple-light": "#A456E7",
+        "portfolio-purple-dark": "#4D0B86",
       },
       width: {
         "portfolio-main": "1300px",

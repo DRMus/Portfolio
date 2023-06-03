@@ -12,7 +12,7 @@ const LinkIcon: FC<Props> = ({ children, className, icon, size, target, ...props
   return (
     <a
       className={classNames(
-        "text-slate-200 transition-colors duration-300 hover:text-portfolio-purple-light",
+        "text-gray-300 transition-colors duration-300 hover:text-portfolio-purple-light",
         className
       )}
       target={target ? target : "_blank"}

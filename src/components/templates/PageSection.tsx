@@ -7,7 +7,7 @@ const PageSection = forwardRef<HTMLElement, Props>(({ className, children, ...pr
   return (
     <article
       ref={ref}
-      className={classNames("w-portfolio-main min-h-portfolio-block my-0 mx-auto pt-[200px]", className)}
+      className={classNames("w-portfolio-main min-h-portfolio-block my-0 mx-auto pt-[200px] pb-[100px]", className)}
       {...props}
     >
       {children}
