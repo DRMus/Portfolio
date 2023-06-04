@@ -75,7 +75,7 @@ const MainPageView = () => {
     let newHeight = contentBlockRef.current.clientHeight;
     let scrollTop = mainBlockRef.current.scrollTop;
 
-    let requiredScrollPosition = scrollTop + (newHeight - oldHeight);
+    let requiredScrollPosition = scrollTop > 1000 ? scrollTop : scrollTop + (newHeight - oldHeight);
 
     // console.log(oldHeight, newHeight, scrollTop, mainBlockRef);
 

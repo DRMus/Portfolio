@@ -9,6 +9,7 @@ export default {
         "portfolio-purple": "#7e22ce",
         "portfolio-purple-light": "#A456E7",
         "portfolio-purple-dark": "#4D0B86",
+        "portfolio-vk": "#0077ff",
       },
       width: {
         "portfolio-main": "1300px",

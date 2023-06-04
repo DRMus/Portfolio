@@ -38,8 +38,7 @@ const FooterMenuItem: FC<Props> = ({ to, children, className, onClick, ...props 
         "font-bold text-portfolio-white/30 text-2xl transition-all duration-300 cursor-pointer select-none",
         "group-hover:text-portfolio-white/70 hover:!text-portfolio-purple hover:!scale-[1.2]",
         {
-          "!text-portfolio-purple/60":
-            (location.pathname.includes(to.toString()) || isSelected),
+          "!text-portfolio-purple/60": location.pathname.includes(to.toString()) || isSelected,
         },
         className
       )}

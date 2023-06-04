@@ -13,13 +13,17 @@ import ProjectSection from "./ProjectSection";
 
 import KonvaIcon from "../../assets/Konva.png";
 import ElectronIcon from "../../assets/electron.ico";
+import ReduxIcon from "../../assets/redux.png";
+import CIcon from "../../assets/C.png";
+
 import DungeonGameGif from "../../assets/dungeon_game.gif";
 import FileManagerGif from "../../assets/file_manager.gif";
 import AutomatedPlaceOfTheCuratorGif from "../../assets/automated_place_of_the_curator.gif";
+import BirdShopGif from "../../assets/bird_shop.gif";
 
 const DungeonGame = () => {
   return (
-    <ProjectSection image={DungeonGameGif} header="Dungeon game">
+    <ProjectSection image={DungeonGameGif} header="Dungeon game" className="pt-0">
       <TextLabel>Description:</TextLabel>
       <TextParagraph>
         This game for simple studing programming. The meaning of the game is to move the character
@@ -79,8 +83,9 @@ const AutomatedPlaceOfTheCurator = () => {
       <TextLabel>Description:</TextLabel>
       <TextParagraph>
         The project makes it possible to finance the work of the curator of a group of students at
-        the university. This desktop application is a curator report template with data entry fields. It is
-        also possible to upload an .xlsx file with curators, groups and students of these groups.
+        the university. This desktop application is a curator report template with data entry
+        fields. It is also possible to upload an .xlsx file with curators, groups and students of
+        these groups.
       </TextParagraph>
       <TextLabel>Stack:</TextLabel>
       <ProjectIconsList>
@@ -101,6 +106,34 @@ const AutomatedPlaceOfTheCurator = () => {
   );
 };
 
+const BirdShop = () => {
+  return (
+    <ProjectSection image={BirdShopGif} header="Bird shop">
+      <TextLabel>Description:</TextLabel>
+      <TextParagraph>
+        Simple online store with backend on C# and ASP.NET Core. Shop have a cart, user profile and
+        his orders, catalog of products.
+      </TextParagraph>
+      <TextLabel>Stack:</TextLabel>
+      <ProjectIconsList>
+        <FontAwesomeIcon
+          icon={faJsSquare}
+          style={{ color: "#ffd500" }}
+          size="2xl"
+          title="JavaScript"
+        />
+        <FontAwesomeIcon icon={faReact} style={{ color: "#61dbfb" }} size="2xl" title="React" />
+        <ImageIcon src={ReduxIcon} title="Redux" />
+        <ImageIcon src={CIcon} title="C#" />
+      </ProjectIconsList>
+      <TextLabel>Links:</TextLabel>
+      <ProjectIconsList>
+        <LinkIcon href="https://github.com/DRMus/bird_shop/" icon={faGithub} />
+      </ProjectIconsList>
+    </ProjectSection>
+  );
+};
+
 const ProjectsList = () => {
   return (
     <div className="text w-full">
@@ -108,7 +141,9 @@ const ProjectsList = () => {
       <DivideLine />
       <FileManager />
       <DivideLine />
-      <AutomatedPlaceOfTheCurator/>
+      <AutomatedPlaceOfTheCurator />
+      <DivideLine />
+      <BirdShop />
     </div>
   );
 };
