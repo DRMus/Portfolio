@@ -7,7 +7,8 @@ html {
   --bg-color: #0d0d0d;
   --text-purple: #600D9F;
   --text-white: #f1f5f9;
-  --animation-show-opacity: showElementOpacity 450ms ease-in-out;
+  --animation-show-opacity: showElementOpacity 350ms ease-in-out;
+  --animation-hide-opacity: hideElementOpacity 350ms ease-in-out;
   --animation-show-bottom-top-bounce: showElementBottomToTop_Bounce 550ms ease-in-out;
   --animation-show-top-bottom-bounce: showElementTopToBottom_Bounce 550ms ease-in-out;
   --animation-hide-bottom-top-bounce: hideElementBottomToTop_Bounce 550ms ease-in-out;

@@ -1,11 +1,20 @@
 import classNames from "classnames";
 import { FC, HTMLAttributes } from "react";
 
-interface Props extends HTMLAttributes<HTMLHeadingElement> {}
+interface Props extends HTMLAttributes<HTMLHeadingElement> {
+  deleteColor?: boolean;
+}
 
-const TextHeader: FC<Props> = ({ children, className, ...props }) => {
+const TextHeader: FC<Props> = ({ children, className, deleteColor, ...props }) => {
   return (
-    <h1 className={classNames("text-portfolio-purple font-bold text-4xl", className)} {...props}>
+    <h1
+      className={classNames(
+        "font-bold text-4xl",
+        { "text-portfolio-purple": !deleteColor },
+        className
+      )}
+      {...props}
+    >
       {children}
     </h1>
   );

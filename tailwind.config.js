@@ -10,6 +10,7 @@ export default {
         "portfolio-purple-light": "#A456E7",
         "portfolio-purple-dark": "#4D0B86",
         "portfolio-vk": "#0077ff",
+        "portfolio-telegram": "#00aeed",
       },
       width: {
         "portfolio-main": "1300px",

@@ -3,3 +3,17 @@
   border-color: rgba(0, 119, 255, 0.5);
   box-shadow: 0 0 20px rgba(0, 119, 255, 0.5);
 }
+
+.telegram-icon-bg:hover {
+  background-color: rgba(0, 174, 237, 0.3);
+  border-color: rgba(0, 174, 237, 0.6);
+  box-shadow: 0 0 20px rgba(0, 174, 237, 0.502);
+}
+
+.showElement {
+  animation: var(--animation-show-opacity);
+}
+
+.hideElement {
+  animation: var(--animation-hide-opacity);
+}

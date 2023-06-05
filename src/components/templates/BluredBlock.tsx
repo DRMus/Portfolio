@@ -18,14 +18,29 @@ function changeHoverSize(hoverSize: THoverSize | undefined): string {
   }
 }
 
+function changeHoverLight(hoverLight: THoverSize | undefined): string {
+  switch (hoverLight) {
+    case "1x":
+      return "bg-gray-300/10";
+    case "2x":
+      return "bg-gray-300/20";
+    case "3x":
+      return "bg-gray-300/30";
+    default:
+      return "bg-gray-300/10";
+  }
+}
+
 interface Props extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   hoverSize?: THoverSize;
+  hoverLight?: THoverSize;
 }
 
 const BluredBlock: FC<Props> = ({
   children,
   className,
   hoverSize,
+  hoverLight,
   onMouseMove,
   onMouseLeave,
   ...props
@@ -55,8 +70,9 @@ const BluredBlock: FC<Props> = ({
       className
     ),
     mouseHover: classNames(
-      "mouse absolute z-[-1] bg-gray-300/10 rounded-full -translate-x-1/2 -translate-y-1/2",
-      changeHoverSize(hoverSize)
+      "mouse absolute z-[-1] rounded-full -translate-x-1/2 -translate-y-1/2",
+      changeHoverSize(hoverSize),
+      changeHoverLight(hoverLight)
     ),
     section: classNames("h-full w-full backdrop-blur-2xl"),
   };
