@@ -12,8 +12,10 @@
 
 .showElement {
   animation: var(--animation-show-opacity);
+  animation-duration: 250ms;
 }
 
 .hideElement {
   animation: var(--animation-hide-opacity);
+  animation-duration: 250ms;
 }
