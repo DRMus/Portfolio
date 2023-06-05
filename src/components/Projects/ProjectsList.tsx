@@ -1,3 +1,4 @@
+import { useEffect, useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faJsSquare, faReact, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
@@ -135,6 +136,25 @@ const BirdShop = () => {
 };
 
 const ProjectsList = () => {
+  const worker = useMemo(
+    () => new Worker(new URL("../../utils/blobToBase64Worker.ts", import.meta.url)),
+    []
+  );
+
+  useEffect(() => {
+    fetch(BirdShopGif)
+      .then((res) => res.blob())
+      .then((res) => {
+        if (window.Worker) {
+          worker.postMessage(res)
+
+          worker.onmessage = (message) => {
+            console.log(message);
+            
+          }
+        }
+      });
+  }, [worker]);
   return (
     <div className="text w-full">
       <DungeonGame />
