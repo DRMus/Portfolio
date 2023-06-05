@@ -24,6 +24,8 @@ const ContactsView = () => {
             icon={faTelegram}
             className="telegram-icon-bg"
             iconClassName="group-hover:text-portfolio-telegram"
+            href="https://t.me/Smochello/"
+            title="@Smochello"
           />
           <ContactBlock
             icon={faGithub}

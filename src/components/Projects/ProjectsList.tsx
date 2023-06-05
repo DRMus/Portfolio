@@ -1,4 +1,3 @@
-import { useEffect, useMemo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faJsSquare, faReact, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
@@ -22,9 +21,19 @@ import FileManagerGif from "../../assets/file_manager.gif";
 import AutomatedPlaceOfTheCuratorGif from "../../assets/automated_place_of_the_curator.gif";
 import BirdShopGif from "../../assets/bird_shop.gif";
 
+import DungeonGameLoad from "../../assets/dungeon_game_load.png";
+import FileManagerLoad from "../../assets/file_manager_load.png";
+import AutomatedPlaceOfTheCuratorLoad from "../../assets/automated_place_of_the_curator_load.png";
+import BirdShopLoad from "../../assets/bird_shop_load.png";
+
 const DungeonGame = () => {
   return (
-    <ProjectSection image={DungeonGameGif} header="Dungeon game" className="pt-0">
+    <ProjectSection
+      image={DungeonGameGif}
+      loadImage={DungeonGameLoad}
+      header="Dungeon game"
+      className="pt-0"
+    >
       <TextLabel>Description:</TextLabel>
       <TextParagraph>
         This game for simple studing programming. The meaning of the game is to move the character
@@ -53,7 +62,7 @@ const DungeonGame = () => {
 
 const FileManager = () => {
   return (
-    <ProjectSection image={FileManagerGif} header="File Manager">
+    <ProjectSection image={FileManagerGif} loadImage={FileManagerLoad} header="File Manager">
       <TextLabel>Description:</TextLabel>
       <TextParagraph>
         This project was created to convert the metadata of a selected files or folder to JSON
@@ -80,7 +89,11 @@ const FileManager = () => {
 
 const AutomatedPlaceOfTheCurator = () => {
   return (
-    <ProjectSection image={AutomatedPlaceOfTheCuratorGif} header="Automated place of the curator">
+    <ProjectSection
+      image={AutomatedPlaceOfTheCuratorGif}
+      loadImage={AutomatedPlaceOfTheCuratorLoad}
+      header="Automated place of the curator"
+    >
       <TextLabel>Description:</TextLabel>
       <TextParagraph>
         The project makes it possible to finance the work of the curator of a group of students at
@@ -109,7 +122,7 @@ const AutomatedPlaceOfTheCurator = () => {
 
 const BirdShop = () => {
   return (
-    <ProjectSection image={BirdShopGif} header="Bird shop">
+    <ProjectSection image={BirdShopGif} loadImage={BirdShopLoad} header="Bird shop">
       <TextLabel>Description:</TextLabel>
       <TextParagraph>
         Simple online store with backend on C# and ASP.NET Core. Shop have a cart, user profile and
@@ -136,25 +149,6 @@ const BirdShop = () => {
 };
 
 const ProjectsList = () => {
-  const worker = useMemo(
-    () => new Worker(new URL("../../utils/blobToBase64Worker.ts", import.meta.url)),
-    []
-  );
-
-  useEffect(() => {
-    fetch(BirdShopGif)
-      .then((res) => res.blob())
-      .then((res) => {
-        if (window.Worker) {
-          worker.postMessage(res)
-
-          worker.onmessage = (message) => {
-            console.log(message);
-            
-          }
-        }
-      });
-  }, [worker]);
   return (
     <div className="text w-full">
       <DungeonGame />

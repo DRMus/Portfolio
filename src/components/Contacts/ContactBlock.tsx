@@ -77,8 +77,8 @@ const ContactBlock: FC<ContactBlockProps> = ({ children, ...props }) => {
   return (
     <BluredBlock
       className={classNames("relative", props.className)}
-      hoverSize="1x"
-      hoverLight="3x"
+      hoverSize="2x"
+      hoverLight="2x"
       onClick={onClick}
     >
       <a href={props.href || "#"} className={componentClassNames.a} target="_blank">
