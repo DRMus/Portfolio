@@ -34,7 +34,7 @@ const MainPageView = () => {
   );
   const [isPageDone, setIsPageDone] = useState<boolean>(true);
 
-  const isScrollingToHomePageKey = useRef<boolean>(false);
+  const isScrollingToHomePageKey = useRef<boolean>(false); //key for initial scroll position by scrolling from element to home page 
   const viewBlockRef = useRef<HTMLElement>(null);
   const homeBlockRef = useRef<HTMLElement>(null);
   const contentBlockRef = useRef<HTMLDivElement>(null);
@@ -67,15 +67,20 @@ const MainPageView = () => {
   const scrollToHomePage = () => {
     if (!mainBlockRef.current || !contentBlockRef.current || !contentBlockOldHeight.current) {
       throw new Error(
-        `some block didn't find: \nmainBlockRef - ${mainBlockRef}\ncontentBlockRef - ${contentBlockRef}\ncontentBlockOldHeight - ${contentBlockOldHeight}`
+        `some block didn't find: 
+        \nmainBlockRef - ${mainBlockRef}
+        \ncontentBlockRef - ${contentBlockRef}
+        \ncontentBlockOldHeight - ${contentBlockOldHeight}`
       );
     }
 
-    let oldHeight = contentBlockOldHeight.current;
-    let newHeight = contentBlockRef.current.clientHeight;
-    let scrollTop = mainBlockRef.current.scrollTop;
+    let oldHeight = contentBlockOldHeight.current; //getting height before home page was mount
+    let newHeight = contentBlockRef.current.clientHeight; //getting height after home page was mount
+    let scrollTop = mainBlockRef.current.scrollTop; //getting scroll height
 
-    let requiredScrollPosition = scrollTop > 1000 ? scrollTop : scrollTop + (newHeight - oldHeight);
+    // Calculating first scroll position, because scroll is going up after element was mount
+    // (Condition "> 1000" is need, because scrollTop have a bug if value more then 1000)
+    let requiredScrollPosition = scrollTop > 1000 ? scrollTop : scrollTop + (newHeight - oldHeight); 
 
     // console.log(oldHeight, newHeight, scrollTop, mainBlockRef);
 
