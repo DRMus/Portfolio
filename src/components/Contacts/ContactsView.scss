@@ -10,6 +10,14 @@
   box-shadow: 0 0 20px rgba(0, 174, 237, 0.502);
 }
 
+.github-icon-bg:hover {
+  box-shadow: 0 0 20px rgba(226, 232, 240, 0.5);
+}
+
+.email-icon-bg:hover {
+  box-shadow: 0 0 20px rgba(234, 179, 8, 0.5);
+}
+
 .showElement {
   animation: var(--animation-show-opacity);
   animation-duration: 250ms;

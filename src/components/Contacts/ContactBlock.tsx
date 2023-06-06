@@ -99,7 +99,7 @@ const ContactBlock: FC<ContactBlockProps> = ({ children, ...props }) => {
       </a>
       {isClipBoard && isCopiedViewVisible && (
         <div className={componentClassNames.copiedHeader}>
-          <TextHeader deleteColor className={componentClassNames.icon + " text-3xl"}>
+          <TextHeader deleteStyles className={componentClassNames.icon + " text-xl"}>
             Copied!
           </TextHeader>
         </div>

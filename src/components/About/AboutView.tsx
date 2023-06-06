@@ -2,6 +2,7 @@ import Photo from "../../assets/photo.jpg";
 import { useOutletContext } from "react-router";
 import { TOutletContext } from "../../interfaces";
 import PageSection from "../templates/PageSection";
+import TextParagraph from "../templates/TextParagraph";
 
 const AboutView = () => {
   const [viewBlockRef] = useOutletContext<TOutletContext>();
@@ -12,10 +13,10 @@ const AboutView = () => {
       className="COMP_AboutView w-full h-[2000px]"
       header={"About Me"}
     >
-      <div className="text-2xl text-portfolio-white font-medium">
-        <p>Muslimov Damir</p>
-        <p>21 y/o</p>
-        <p>Ulyanovsk, Russia</p>
+      <div className="">
+        <TextParagraph>Muslimov Damir</TextParagraph>
+        <TextParagraph>21 y/o</TextParagraph>
+        <TextParagraph>Russia, Ulyanovsk</TextParagraph>
       </div>
 
       {/* <div>

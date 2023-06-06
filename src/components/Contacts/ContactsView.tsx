@@ -29,7 +29,7 @@ const ContactsView = () => {
           />
           <ContactBlock
             icon={faGithub}
-            className="hover:bg-slate-200/20 hover:border-slate-200/50"
+            className="hover:bg-slate-200/20 hover:border-slate-200/50 github-icon-bg"
             iconClassName="group-hover:text-slate-200"
             href="https://github.com/DRMus/"
             title="DRMus"
@@ -37,7 +37,7 @@ const ContactsView = () => {
           <ContactBlock
             type="clipboard"
             icon={faEnvelope}
-            className="hover:bg-yellow-500/20 hover:border-yellow-500/50"
+            className="hover:bg-yellow-500/20 hover:border-yellow-500/50 email-icon-bg"
             iconClassName="group-hover:text-yellow-500"
             title="ditrom7306@mail.ru"
           />

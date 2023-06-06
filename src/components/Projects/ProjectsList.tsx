@@ -25,6 +25,9 @@ import DungeonGameLoad from "../../assets/dungeon_game_load.png";
 import FileManagerLoad from "../../assets/file_manager_load.png";
 import AutomatedPlaceOfTheCuratorLoad from "../../assets/automated_place_of_the_curator_load.png";
 import BirdShopLoad from "../../assets/bird_shop_load.png";
+import { useContext, useLayoutEffect } from "react";
+import { intersectionObserver } from "../../utils/IntersectionObserver";
+import { ProjectContextValues } from "../../contexts/ProjectContext";
 
 const DungeonGame = () => {
   return (
@@ -149,6 +152,10 @@ const BirdShop = () => {
 };
 
 const ProjectsList = () => {
+  const { addObserverAction } = useContext(ProjectContextValues);
+  useLayoutEffect(() => {
+    intersectionObserver("project-animate", addObserverAction);
+  }, []);
   return (
     <div className="text w-full">
       <DungeonGame />
