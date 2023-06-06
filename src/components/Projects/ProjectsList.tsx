@@ -26,7 +26,7 @@ import FileManagerLoad from "../../assets/file_manager_load.png";
 import AutomatedPlaceOfTheCuratorLoad from "../../assets/automated_place_of_the_curator_load.png";
 import BirdShopLoad from "../../assets/bird_shop_load.png";
 import { useContext, useLayoutEffect } from "react";
-import { intersectionObserver } from "../../utils/IntersectionObserver";
+import { intersectionObserver } from "../../utils/intersectionObserver";
 import { ProjectContextValues } from "../../contexts/ProjectContext";
 
 const DungeonGame = () => {

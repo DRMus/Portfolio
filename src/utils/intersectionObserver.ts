@@ -1,6 +1,6 @@
 function onEntry(
   entries: IntersectionObserverEntry[],
-  observer: IntersectionObserver,
+  _: IntersectionObserver,
   maxLength: number,
   addAction:
     | ((element: any, changes: IntersectionObserverEntry, elementIndex: number) => void)

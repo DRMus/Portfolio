@@ -1,4 +1,4 @@
-import Photo from "../../assets/photo.jpg";
+// import Photo from "../../assets/photo.jpg";
 import { useOutletContext } from "react-router";
 import { TOutletContext } from "../../interfaces";
 import PageSection from "../templates/PageSection";
