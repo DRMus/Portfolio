@@ -7,5 +7,10 @@ export interface IPosition {
 }
 
 export type TOutletContext = [RefObject<HtmlElement>]
+
+export type TCounterOptions = {
+  timeout?: number,
+  isEaseOut?: boolean,
+}
   
 

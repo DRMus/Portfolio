@@ -11,7 +11,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 const ProjectSection: FC<Props> = ({ children, className, image, loadImage, header, ...props }) => {
-  const { addGifVisibilityCallback } = useContext(ProjectContextValues)
+  const { addGifVisibilityCallback } = useContext(ProjectContextValues);
 
   const [projectImage, setProjectImage] = useState<string>("");
   const [isGifVisible, setIsGifVisible] = useState<boolean>(false);
@@ -23,18 +23,19 @@ const ProjectSection: FC<Props> = ({ children, className, image, loadImage, head
 
   const changeGifVisibility = (state: boolean) => {
     setIsGifVisible(state);
-  }
+  };
 
   const getGifImage = (image: string) => {
     fetch(image || "")
       .then((res) => res.blob())
       .then((res) => {
         if (window.Worker) {
-          worker.postMessage(res);
-
           worker.onmessage = (message) => {
             setProjectImage(message.data);
+            worker.terminate();
           };
+
+          worker.postMessage(res);
         }
       });
   };
@@ -42,18 +43,23 @@ const ProjectSection: FC<Props> = ({ children, className, image, loadImage, head
   useEffect(() => {
     addGifVisibilityCallback(changeGifVisibility);
     if (image) {
-
       getGifImage(image);
     }
   }, [worker]);
   return (
-    <div className={classNames("group project-animate transition-all w-full py-24 flex flex-col", className)} {...props}>
+    <div
+      className={classNames(
+        "group project-animate transition-all w-full py-24 flex flex-col",
+        className
+      )}
+      {...props}
+    >
       <TextHeader className="mb-6">{header}</TextHeader>
       <div className="flex justify-between items-center">
         <div className="w-[28rem]">{children}</div>
         <div className="img relative w-[650px] min-h-[328px]">
           <img
-            src={(projectImage && isGifVisible) ? projectImage : loadImage}
+            src={projectImage && isGifVisible ? projectImage : loadImage}
             alt={image}
             className=" w-full h-full object-contain rounded-lg"
           />
