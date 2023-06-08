@@ -1,61 +1,37 @@
-import { useRef, useEffect, FC, useState, useMemo, useLayoutEffect } from "react";
+import { useRef, FC, useLayoutEffect } from "react";
 import { asyncCounter } from "../../utils/asyncCounter";
-import TextParagraph from "../templates/TextParagraph";
 
 import "./AboutView.scss";
+import { ISkillCircleProps } from "../../interfaces";
+import CircleSvg from "./CircleSvg";
 
-interface Props {
-  percent: number;
-  index: number;
-  gradientColorStart?: string;
-  gradientColorStop?: string;
-}
-
-const SkillCircle: FC<Props> = (props) => {
-  const gradientId = useMemo<string>(() => `gradientStyle${props.index}`, []);
-
+const SkillCircle: FC<ISkillCircleProps> = (props) => {
   const counterRef = useRef<HTMLSpanElement>(null);
-  const sliderRef = useRef<SVGCircleElement>(null);
 
   const counterOperations = (count: number) => {
     if (!counterRef.current) {
       throw new Error("counterRef.current is undefined");
     }
-
     counterRef.current.innerHTML = `${count}%`;
   };
 
   useLayoutEffect(() => {
-    setTimeout(() => {
-      if (!sliderRef.current) {
-        return;
-      }
-      sliderRef.current.style.strokeDashoffset = `${503 - 503 * (props.percent / 100)}`;
-    },100);
     asyncCounter(counterOperations, props.percent, { timeout: 1500, isEaseOut: true });
-  }, [sliderRef]);
+  }, []);
 
   return (
-    <div className="relative w-[180px] h-[180px]">
-      <span ref={counterRef} className="absolute text-portfolio-white font-medium">
-        0%
-      </span>
-      <svg className="circle-bg">
-        <defs>
-          <linearGradient id={gradientId}>
-            <stop offset="0%" stopColor={props.gradientColorStart || "#565656"} />
-            <stop offset="100%" stopColor={props.gradientColorStop || "#b7b5b5"} />
-          </linearGradient>
-        </defs>
-        <circle
-          ref={sliderRef}
-          className="circle"
-          cx="90"
-          cy="90"
-          r="80"
-          style={{ stroke: `url(#${gradientId})` }}
-        />
-      </svg>
+    <div className="flex basis-1/3 justify-center">
+      <div className="relative w-[190px] h-[190px]">
+        <CircleSvg {...props} />
+
+        <div
+          className="absolute flex flex-col gap-1 text-center text-2xl font-bold top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          style={{ color: props.gradientColorStop || "" }}
+        >
+          <span>{props.name}</span>
+          <span ref={counterRef}>0%</span>
+        </div>
+      </div>
     </div>
   );
 };

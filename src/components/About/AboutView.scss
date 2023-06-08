@@ -10,10 +10,15 @@
 .circle {
   fill: none;
 	stroke-width: 10px;
-	stroke-dasharray: 503;
-	stroke-dashoffset: 503;
+	stroke-dasharray: 565;
+	stroke-dashoffset: 565;
 	animation-duration: 1.5s;
 	animation-timing-function: linear;
 	animation-fill-mode: forwards;
 	transition: 1.5s stroke-dashoffset;
+
+	&-static {
+		stroke-width: 10px;
+		opacity: 0.3;
+	}
 }
