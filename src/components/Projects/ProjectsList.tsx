@@ -1,5 +1,5 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faJsSquare, faReact, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { useContext, useLayoutEffect } from "react";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
 import TextParagraph from "../templates/TextParagraph";
@@ -7,6 +7,11 @@ import TextLabel from "../templates/TextLabel";
 import DivideLine from "../templates/DivideLine";
 import LinkIcon from "../templates/LinkIcon";
 import ImageIcon from "../templates/ImageIcon";
+import { JSIcon, ReactIcon } from "../templates/Icons";
+
+import { ProjectContextValues } from "../../contexts/ProjectContext";
+
+import { intersectionObserver } from "../../utils/intersectionObserver";
 
 import ProjectIconsList from "./ProjectIconsList";
 import ProjectSection from "./ProjectSection";
@@ -25,9 +30,6 @@ import DungeonGameLoad from "../../assets/dungeon_game_load.png";
 import FileManagerLoad from "../../assets/file_manager_load.png";
 import AutomatedPlaceOfTheCuratorLoad from "../../assets/automated_place_of_the_curator_load.png";
 import BirdShopLoad from "../../assets/bird_shop_load.png";
-import { useContext, useLayoutEffect } from "react";
-import { intersectionObserver } from "../../utils/intersectionObserver";
-import { ProjectContextValues } from "../../contexts/ProjectContext";
 
 const DungeonGame = () => {
   return (
@@ -45,13 +47,8 @@ const DungeonGame = () => {
       </TextParagraph>
       <TextLabel>Stack:</TextLabel>
       <ProjectIconsList>
-        <FontAwesomeIcon
-          icon={faJsSquare}
-          style={{ color: "#ffd500" }}
-          size="2xl"
-          title="JavaScript"
-        />
-        <FontAwesomeIcon icon={faReact} style={{ color: "#61dbfb" }} size="2xl" title="React" />
+        <JSIcon size="2xl" title="JavaScript" />
+        <ReactIcon size="2xl" title="React" />
         <ImageIcon src={KonvaIcon} title="Konva" />
       </ProjectIconsList>
       <TextLabel>Links:</TextLabel>
@@ -73,13 +70,8 @@ const FileManager = () => {
       </TextParagraph>
       <TextLabel>Stack:</TextLabel>
       <ProjectIconsList>
-        <FontAwesomeIcon
-          icon={faJsSquare}
-          style={{ color: "#ffd500" }}
-          size="2xl"
-          title="JavaScript"
-        />
-        <FontAwesomeIcon icon={faReact} style={{ color: "#61dbfb" }} size="2xl" title="React" />
+        <JSIcon size="2xl" title="JavaScript" />
+        <ReactIcon size="2xl" title="React" />
       </ProjectIconsList>
       <TextLabel>Links:</TextLabel>
       <ProjectIconsList>
@@ -106,13 +98,8 @@ const AutomatedPlaceOfTheCurator = () => {
       </TextParagraph>
       <TextLabel>Stack:</TextLabel>
       <ProjectIconsList>
-        <FontAwesomeIcon
-          icon={faJsSquare}
-          style={{ color: "#ffd500" }}
-          size="2xl"
-          title="JavaScript"
-        />
-        <FontAwesomeIcon icon={faReact} style={{ color: "#61dbfb" }} size="2xl" title="React" />
+        <JSIcon size="2xl" title="JavaScript" />
+        <ReactIcon size="2xl" title="React" />
         <ImageIcon src={ElectronIcon} title="Electron" />
       </ProjectIconsList>
       <TextLabel>Links:</TextLabel>
@@ -133,13 +120,8 @@ const BirdShop = () => {
       </TextParagraph>
       <TextLabel>Stack:</TextLabel>
       <ProjectIconsList>
-        <FontAwesomeIcon
-          icon={faJsSquare}
-          style={{ color: "#ffd500" }}
-          size="2xl"
-          title="JavaScript"
-        />
-        <FontAwesomeIcon icon={faReact} style={{ color: "#61dbfb" }} size="2xl" title="React" />
+        <JSIcon size="2xl" title="JavaScript" />
+        <ReactIcon size="2xl" title="React" />
         <ImageIcon src={ReduxIcon} title="Redux" />
         <ImageIcon src={CIcon} title="C#" />
       </ProjectIconsList>

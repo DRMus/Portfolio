@@ -1,23 +1,28 @@
 import classNames from "classnames";
-import { FC, HTMLAttributes } from "react";
+import { HTMLAttributes, forwardRef } from "react";
 
 interface Props extends HTMLAttributes<HTMLParagraphElement> {
   deleteColor?: boolean;
+  deleteFont?: boolean;
 }
 
-const TextParagraph: FC<Props> = ({ children, className, deleteColor, ...props }) => {
-  return (
-    <p
-      className={classNames(
-        "text-2xl font-medium leading-normal",
-        { "text-portfolio-white": !deleteColor },
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </p>
-  );
-};
+const TextParagraph = forwardRef<HTMLParagraphElement, Props>(
+  ({ children, className, deleteColor, deleteFont, ...props }, ref) => {
+    return (
+      <p
+        ref={ref}
+        className={classNames(
+          "font-medium leading-normal",
+          { "text-portfolio-white": !deleteColor },
+          { "text-2xl": !deleteFont },
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </p>
+    );
+  }
+);
 
 export default TextParagraph;

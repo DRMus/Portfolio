@@ -1,4 +1,5 @@
 import { FC, ReactNode, createContext, useRef } from "react";
+import { TObserverAction } from "../interfaces";
 
 type TGifCallback = (state: boolean) => void;
 
@@ -7,11 +8,7 @@ interface Props {
 }
 
 interface ProjectContext {
-  addObserverAction: (
-    element: HTMLElement,
-    changes: IntersectionObserverEntry,
-    elementIndex: number
-  ) => void;
+  addObserverAction: TObserverAction;
   addGifVisibilityCallback: (callback: TGifCallback) => void;
 }
 
@@ -27,7 +24,7 @@ export const ProjectContextValues = createContext<ProjectContext>({
 export const ProjectContextProvider: FC<Props> = ({ children }) => {
   const gifVisibilityCallBacks = useRef<TGifCallback[]>([]);
 
-  const addObserverAction = (
+  const addObserverAction: TObserverAction = (
     element: HTMLElement,
     changes: IntersectionObserverEntry,
     elementIndex: number
@@ -38,7 +35,6 @@ export const ProjectContextProvider: FC<Props> = ({ children }) => {
       gifVisibilityCallBacks.current[elementIndex](changes.isIntersecting);
     } catch {
       console.error(elementIndex);
-      
     }
   };
 
