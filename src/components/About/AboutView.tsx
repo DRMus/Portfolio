@@ -1,11 +1,16 @@
 // import Photo from "../../assets/photo.jpg";
 import { useOutletContext } from "react-router";
-import { TOutletContext } from "../../interfaces";
+import { TObserverAction, TOutletContext } from "../../interfaces";
 import PageSection from "../templates/PageSection";
 import SkillsGroup from "./SkillsGroup";
 
 const AboutView = () => {
   const [viewBlockRef] = useOutletContext<TOutletContext>();
+
+  const observerAction: TObserverAction = (element: any, changes: IntersectionObserverEntry, elementIndex: number) => {
+    
+  }
+  
 
   return (
     <PageSection

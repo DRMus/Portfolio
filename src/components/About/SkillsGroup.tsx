@@ -2,7 +2,7 @@ import SkillCircle from "./SkillCircle";
 
 const SkillsGroup = () => {
   return (
-    <div className="skillCircles flex flex-wrap gap-y-8 justify-around">
+    <div className="aboutSection flex flex-wrap gap-y-8 justify-around">
       <SkillCircle
         name="React"
         percent={60}

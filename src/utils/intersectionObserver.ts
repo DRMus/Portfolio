@@ -1,12 +1,13 @@
+import { TObserverAction } from "../interfaces";
+
 function onEntry(
   entries: IntersectionObserverEntry[],
   _: IntersectionObserver,
   maxLength: number,
-  addAction:
-    | ((element: any, changes: IntersectionObserverEntry, elementIndex: number) => void)
-    | string
+  addAction: TObserverAction | string
 ) {
   entries.forEach((changes, index) => {
+    
     if (index >= maxLength) {
       return;
     }
@@ -20,12 +21,7 @@ function onEntry(
   });
 }
 
-export function intersectionObserver(
-  queryClass: string,
-  addAction:
-    | ((element: any, changes: IntersectionObserverEntry, elementIndex: number) => void)
-    | string
-) {
+export function intersectionObserver(queryClass: string, addAction: TObserverAction | string) {
   const elements = document.getElementsByClassName(queryClass);
   const maxLength = elements.length;
   const observer = new IntersectionObserver(
@@ -33,6 +29,7 @@ export function intersectionObserver(
     { threshold: [0, 0.2, 0.4, 0.6, 0.8, 0.9, 0.95, 1.0] }
   );
   for (let elem of elements) {
+    
     observer.observe(elem);
   }
 }
