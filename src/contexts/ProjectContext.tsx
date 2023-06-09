@@ -1,5 +1,6 @@
-import { FC, ReactNode, createContext, useRef } from "react";
+import { FC, ReactNode, createContext, useMemo, useRef } from "react";
 import { TObserverAction } from "../interfaces";
+import { keyGenerator } from "../utils/keyGenerator";
 
 type TGifCallback = (state: boolean) => void;
 
@@ -10,6 +11,7 @@ interface Props {
 interface ProjectContext {
   addObserverAction: TObserverAction;
   addGifVisibilityCallback: (callback: TGifCallback) => void;
+  getProjectKey: () => number;
 }
 
 export const ProjectContextValues = createContext<ProjectContext>({
@@ -19,9 +21,14 @@ export const ProjectContextValues = createContext<ProjectContext>({
   addGifVisibilityCallback: function (): void {
     throw new Error("Function not implemented.");
   },
+  getProjectKey: function (): number {
+    throw new Error("Function not implemented.");
+  },
 });
 
 export const ProjectContextProvider: FC<Props> = ({ children }) => {
+  const projectKeyGenerator = useMemo(() => keyGenerator(), []);
+
   const gifVisibilityCallBacks = useRef<TGifCallback[]>([]);
 
   const addObserverAction: TObserverAction = (
@@ -33,10 +40,12 @@ export const ProjectContextProvider: FC<Props> = ({ children }) => {
     element.style.filter = `blur(${5 - changes.intersectionRatio * 5}px)`;
     try {
       gifVisibilityCallBacks.current[elementIndex](changes.isIntersecting);
-    } catch {
-      console.error(elementIndex);
+    } catch (e) {
+      console.error(e);
     }
   };
+
+  const getProjectKey = () => projectKeyGenerator.next().value;
 
   const addGifVisibilityCallback = (callback: TGifCallback) => {
     gifVisibilityCallBacks.current.push(callback);
@@ -45,6 +54,7 @@ export const ProjectContextProvider: FC<Props> = ({ children }) => {
   const value: ProjectContext = {
     addObserverAction,
     addGifVisibilityCallback,
+    getProjectKey,
   };
   return <ProjectContextValues.Provider value={value}>{children}</ProjectContextValues.Provider>;
 };

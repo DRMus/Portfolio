@@ -21,10 +21,10 @@ import ElectronIcon from "../../assets/electron.ico";
 import ReduxIcon from "../../assets/redux.png";
 import CIcon from "../../assets/C.png";
 
-import DungeonGameGif from "../../assets/dungeon_game.gif";
-import FileManagerGif from "../../assets/file_manager.gif";
-import AutomatedPlaceOfTheCuratorGif from "../../assets/automated_place_of_the_curator.gif";
-import BirdShopGif from "../../assets/bird_shop.gif";
+import DungeonGameVideo from "../../assets/dungeon_game.mp4";
+import FileManagerVideo from "../../assets/file_manager.mp4";
+import AutomatedPlaceOfTheCuratorVideo from "../../assets/automated_place_of_the_curator.mp4";
+import BirdShopVideo from "../../assets/bird_shop.mp4";
 
 import DungeonGameLoad from "../../assets/dungeon_game_load.png";
 import FileManagerLoad from "../../assets/file_manager_load.png";
@@ -34,7 +34,7 @@ import BirdShopLoad from "../../assets/bird_shop_load.png";
 const DungeonGame = () => {
   return (
     <ProjectSection
-      image={DungeonGameGif}
+      video={DungeonGameVideo}
       loadImage={DungeonGameLoad}
       header="Dungeon game"
       className="pt-0"
@@ -62,7 +62,7 @@ const DungeonGame = () => {
 
 const FileManager = () => {
   return (
-    <ProjectSection image={FileManagerGif} loadImage={FileManagerLoad} header="File Manager">
+    <ProjectSection video={FileManagerVideo} loadImage={FileManagerLoad} header="File Manager">
       <TextLabel>Description:</TextLabel>
       <TextParagraph>
         This project was created to convert the metadata of a selected files or folder to JSON
@@ -85,7 +85,7 @@ const FileManager = () => {
 const AutomatedPlaceOfTheCurator = () => {
   return (
     <ProjectSection
-      image={AutomatedPlaceOfTheCuratorGif}
+      video={AutomatedPlaceOfTheCuratorVideo}
       loadImage={AutomatedPlaceOfTheCuratorLoad}
       header="Automated place of the curator"
     >
@@ -112,7 +112,7 @@ const AutomatedPlaceOfTheCurator = () => {
 
 const BirdShop = () => {
   return (
-    <ProjectSection image={BirdShopGif} loadImage={BirdShopLoad} header="Bird shop">
+    <ProjectSection video={BirdShopVideo} loadImage={BirdShopLoad} header="Bird shop">
       <TextLabel>Description:</TextLabel>
       <TextParagraph>
         Simple online store with backend on C# and ASP.NET Core. Shop have a cart, user profile and
@@ -136,7 +136,7 @@ const BirdShop = () => {
 const ProjectsList = () => {
   const { addObserverAction } = useContext(ProjectContextValues);
   useLayoutEffect(() => {
-    intersectionObserver("project-animate", addObserverAction);
+    intersectionObserver("projectscrollanimate", addObserverAction);
   }, []);
   return (
     <div className="text w-full">
