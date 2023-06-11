@@ -1,11 +1,13 @@
-import { useRef, FC, useLayoutEffect } from "react";
+import { useRef, FC, useLayoutEffect, useContext, useEffect } from "react";
 import { asyncCounter } from "../../utils/asyncCounter";
 
 import "./AboutView.scss";
 import { ISkillCircleProps } from "../../interfaces";
 import CircleSvg from "./CircleSvg";
+import { SkillCircleContextValues } from "./SkillsGroup";
 
 const SkillCircle: FC<ISkillCircleProps> = (props) => {
+  const { isComponentInter } = useContext(SkillCircleContextValues);
   const counterRef = useRef<HTMLSpanElement>(null);
 
   const counterOperations = (count: number) => {
@@ -16,8 +18,10 @@ const SkillCircle: FC<ISkillCircleProps> = (props) => {
   };
 
   useLayoutEffect(() => {
-    asyncCounter(counterOperations, props.percent, { timeout: 1500, isEaseOut: true });
-  }, []);
+    if (isComponentInter) {
+      asyncCounter(counterOperations, props.percent, { timeout: 1500, isEaseOut: true });
+    }
+  }, [isComponentInter]);
 
   return (
     <div className="flex basis-1/3 justify-center">

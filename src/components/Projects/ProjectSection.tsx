@@ -11,7 +11,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 const ProjectSection: FC<Props> = ({ children, className, video, loadImage, header, ...props }) => {
-  const { addGifVisibilityCallback, getProjectKey } = useContext(ProjectContextValues);
+  const { addVideoVisibilityCallback, getProjectKey } = useContext(ProjectContextValues);
 
   const [projectVideo, setProjectVideo] = useState<string>("");
 
@@ -23,26 +23,22 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
     []
   );
 
-  const changeGifVisibility = (state: boolean) => {
-    if (!projectVideo) {
-      return;
-    }
-
+  const changeVideoVisibility = (state: boolean) => {
     if (!videoRef.current) {
-      throw new Error("videoRef.current is undefined");
+      return;
     }
     videoRef.current.click();
 
     if (state) {
       videoRef.current.play();
     } else {
-      videoRef.current.currentTime = 0;
       videoRef.current.pause();
+      videoRef.current.currentTime = 0;
     }
   };
 
-  const getGifImage = (image: string) => {
-    fetch(image || "")
+  const getVideo = (videoUrl: string) => {
+    fetch(videoUrl || "")
       .then((res) => res.blob())
       .then((res) => {
         if (window.Worker) {
@@ -58,9 +54,9 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
   };
 
   useEffect(() => {
-    addGifVisibilityCallback(changeGifVisibility);
+    addVideoVisibilityCallback(changeVideoVisibility);
     if (video) {
-      getGifImage(video);
+      getVideo(video);
     }
   }, [worker]);
   return (

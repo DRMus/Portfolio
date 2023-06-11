@@ -136,7 +136,11 @@ const BirdShop = () => {
 const ProjectsList = () => {
   const { addObserverAction } = useContext(ProjectContextValues);
   useLayoutEffect(() => {
-    intersectionObserver("projectscrollanimate", addObserverAction);
+    const observer = intersectionObserver("projectscrollanimate", addObserverAction);
+
+    return () => {
+      observer.disconnect();
+    };
   }, []);
   return (
     <div className="text w-full">

@@ -11,6 +11,7 @@ export type TCounterOptions = {
   timeout?: number;
   isEaseOut?: boolean;
 };
+export type TObserverCallback = (state: boolean, intersectionRatio?: number) => void;
 
 export interface IFAIconProps
   extends BackwardCompatibleOmit<SVGAttributes<SVGSVGElement>, "children" | "mask" | "transform">,

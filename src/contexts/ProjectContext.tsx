@@ -1,8 +1,6 @@
 import { FC, ReactNode, createContext, useMemo, useRef } from "react";
-import { TObserverAction } from "../interfaces";
+import { TObserverAction, TObserverCallback } from "../interfaces";
 import { keyGenerator } from "../utils/keyGenerator";
-
-type TGifCallback = (state: boolean) => void;
 
 interface Props {
   children: ReactNode;
@@ -10,7 +8,7 @@ interface Props {
 
 interface ProjectContext {
   addObserverAction: TObserverAction;
-  addGifVisibilityCallback: (callback: TGifCallback) => void;
+  addVideoVisibilityCallback: (callback: TObserverCallback) => void;
   getProjectKey: () => number;
 }
 
@@ -18,7 +16,7 @@ export const ProjectContextValues = createContext<ProjectContext>({
   addObserverAction: function (): void {
     throw new Error("Function not implemented.");
   },
-  addGifVisibilityCallback: function (): void {
+  addVideoVisibilityCallback: function (): void {
     throw new Error("Function not implemented.");
   },
   getProjectKey: function (): number {
@@ -29,7 +27,7 @@ export const ProjectContextValues = createContext<ProjectContext>({
 export const ProjectContextProvider: FC<Props> = ({ children }) => {
   const projectKeyGenerator = useMemo(() => keyGenerator(), []);
 
-  const gifVisibilityCallBacks = useRef<TGifCallback[]>([]);
+  const gifVisibilityCallBacks = useRef<TObserverCallback[]>([]);
 
   const addObserverAction: TObserverAction = (
     element: HTMLElement,
@@ -38,8 +36,12 @@ export const ProjectContextProvider: FC<Props> = ({ children }) => {
   ) => {
     element.style.opacity = `${changes.intersectionRatio}`;
     element.style.filter = `blur(${5 - changes.intersectionRatio * 5}px)`;
+
     try {
-      gifVisibilityCallBacks.current[elementIndex](changes.isIntersecting);
+      gifVisibilityCallBacks.current[elementIndex](
+        changes.isIntersecting,
+        changes.intersectionRatio
+      );
     } catch (e) {
       console.error(e);
     }
@@ -47,13 +49,13 @@ export const ProjectContextProvider: FC<Props> = ({ children }) => {
 
   const getProjectKey = () => projectKeyGenerator.next().value;
 
-  const addGifVisibilityCallback = (callback: TGifCallback) => {
+  const addVideoVisibilityCallback = (callback: TObserverCallback) => {
     gifVisibilityCallBacks.current.push(callback);
   };
 
   const value: ProjectContext = {
     addObserverAction,
-    addGifVisibilityCallback,
+    addVideoVisibilityCallback,
     getProjectKey,
   };
   return <ProjectContextValues.Provider value={value}>{children}</ProjectContextValues.Provider>;

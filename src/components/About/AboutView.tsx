@@ -1,16 +1,12 @@
 // import Photo from "../../assets/photo.jpg";
 import { useOutletContext } from "react-router";
-import { TObserverAction, TOutletContext } from "../../interfaces";
+import { TOutletContext } from "../../interfaces";
 import PageSection from "../templates/PageSection";
-import SkillsGroup from "./SkillsGroup";
+import AboutList from "./AboutList";
+import { AboutContextProvider } from "../../contexts/AboutContext";
 
 const AboutView = () => {
   const [viewBlockRef] = useOutletContext<TOutletContext>();
-
-  const observerAction: TObserverAction = (element: any, changes: IntersectionObserverEntry, elementIndex: number) => {
-    
-  }
-  
 
   return (
     <PageSection
@@ -18,7 +14,9 @@ const AboutView = () => {
       className="COMP_AboutView w-full h-[2000px]"
       header={"About Me"}
     >
-      <SkillsGroup />
+      <AboutContextProvider>
+        <AboutList />
+      </AboutContextProvider>
     </PageSection>
   );
 };
