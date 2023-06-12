@@ -79,6 +79,7 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
               className=" w-full h-full object-contain rounded-lg"
               autoPlay
               muted
+              loop
             />
           ) : (
             <img src={loadImage} className=" w-full h-full object-contain rounded-lg" />

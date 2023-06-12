@@ -36,6 +36,10 @@ export const ProjectContextProvider: FC<Props> = ({ children }) => {
   ) => {
     element.style.opacity = `${changes.intersectionRatio}`;
     element.style.filter = `blur(${5 - changes.intersectionRatio * 5}px)`;
+    
+    if (elementIndex + 1 > gifVisibilityCallBacks.current.length) {
+      return
+    }
 
     try {
       gifVisibilityCallBacks.current[elementIndex](

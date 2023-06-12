@@ -5,12 +5,21 @@ const initialCounterOptions: TCounterOptions = {
   isEaseOut: false,
 };
 
+/**
+ * 
+ * @param operationFunc 
+ * @param maxCount 
+ * @param options 
+ * @param startNumber 
+ * @returns setInterval id 
+ */
+
 export function asyncCounter(
   operationFunc: (count: number) => void,
   maxCount: number,
   options?: TCounterOptions,
   startNumber: number = 0
-) {
+): number {
   let currentOptions = options
     ? Object.assign(initialCounterOptions, options)
     : initialCounterOptions;
@@ -29,4 +38,6 @@ export function asyncCounter(
       clearInterval(inter);
     }
   }, delay);
+
+  return inter
 }

@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap");
 @import url("./_keyframes.scss");
 
 html {
-  --main-font: 'Zen Kaku Gothic New', sans-serif;
+  --main-font: "Zen Kaku Gothic New", sans-serif;
   --bg-color: #0d0d0d;
-  --text-purple: #600D9F;
+  --text-purple: #600d9f;
   --text-white: #f1f5f9;
   --color-js: #ffd500;
   --color-js-dark: #836d00;
@@ -27,5 +26,5 @@ html {
   --animation-hide-top-bottom-bounce: hideElementTopToBottom_Bounce 550ms ease-in-out;
   --animation-show-opacity-slider: showElementOpacitySlider 1000ms ease-in-out;
   --animation-show-scale: showBlockScale 400ms ease-in-out;
-  --nav-section-shadow: 0 0 7px 7px calc(var(--text-purple) + "dd")
+  --nav-section-shadow: 0 0 7px 7px calc(var(--text-purple) + "dd");
 }

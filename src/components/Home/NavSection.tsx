@@ -12,12 +12,13 @@ interface Props extends HTMLAttributes<HTMLElement> {
 }
 
 const NavSection: FC<Props> = ({ children, className, page, onClick, ...props }) => {
-  const { isScrollAnimationPlaying } = useContext(MainContextValues);
+  const { isScrollAnimationPlaying, showSelectedPage } = useContext(MainContextValues);
 
   const handlerMouseClick = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (isScrollAnimationPlaying) {
       event.preventDefault();
     }
+    showSelectedPage(true);
     onClick && onClick(event);
   };
 

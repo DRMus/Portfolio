@@ -9,6 +9,7 @@ export default {
         "portfolio-purple": "#7e22ce",
         "portfolio-purple-light": "#A456E7",
         "portfolio-purple-dark": "#4D0B86",
+        "portfolio-purple-extraDark": "#380861",
         "portfolio-vk": "#0077ff",
         "portfolio-telegram": "#00aeed",
       },

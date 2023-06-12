@@ -17,11 +17,13 @@ interface MainContext {
   isPageSelected: boolean;
   isScrollAnimationPlaying: boolean;
   isPageChanging: boolean;
+  isWelcomeAnimationPlaying: boolean;
   contentBlockOldHeight: RefObject<number>;
   mainBlockRef: RefObject<HTMLElement>;
   showSelectedPage: (state: boolean) => void;
   changeIsScrollAnimationPlaying: (state: boolean) => void;
   changeIsPageChanging: (state: boolean) => void;
+  changeIsWelcomeAnimationPlaying: (state: boolean) => void;
   setContentBlockOldHeight: (ref: RefObject<HTMLDivElement> | undefined) => void;
 }
 
@@ -29,8 +31,9 @@ export const MainContextValues = createContext<MainContext>({
   isPageSelected: false,
   isScrollAnimationPlaying: false,
   isPageChanging: false,
+  isWelcomeAnimationPlaying: false,
   contentBlockOldHeight: { current: -1 },
-  mainBlockRef: {current: null},
+  mainBlockRef: { current: null },
   showSelectedPage: function (): void {
     throw new Error("Function not implemented.");
   },
@@ -43,11 +46,15 @@ export const MainContextValues = createContext<MainContext>({
   changeIsPageChanging: function (): void {
     throw new Error("Function not implemented.");
   },
+  changeIsWelcomeAnimationPlaying: function (): void {
+    throw new Error("Function not implemented.");
+  }
 });
 
 export const MainContextProvider: FC<Props> = ({ children }) => {
   const [isPageSelected, setIsPageSelected] = useState<boolean>(false);
   const [isScrollAnimationPlaying, setIsScrollAnimationPlaying] = useState<boolean>(false);
+  const [isWelcomeAnimationPlaying, setIsWelcomeAnimationPlaying] = useState<boolean>(false);
   const [isPageChanging, setIsPageChanging] = useState<boolean>(false);
 
   const contentBlockOldHeight = useRef<number>(-1);
@@ -66,6 +73,10 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
   const changeIsPageChanging = (state: boolean) => {
     setIsPageChanging(state);
   };
+
+  const changeIsWelcomeAnimationPlaying = (state: boolean) => {
+    setIsWelcomeAnimationPlaying(state);
+  }
 
   const setContentBlockOldHeight = (ref: RefObject<HTMLDivElement> | undefined) => {
     if (!ref) {
@@ -90,11 +101,13 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
     isPageSelected,
     isScrollAnimationPlaying,
     isPageChanging,
+    isWelcomeAnimationPlaying,
     contentBlockOldHeight,
     mainBlockRef,
     showSelectedPage,
     changeIsScrollAnimationPlaying,
     changeIsPageChanging,
+    changeIsWelcomeAnimationPlaying,
     setContentBlockOldHeight,
   };
 

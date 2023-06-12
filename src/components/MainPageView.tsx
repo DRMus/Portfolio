@@ -157,7 +157,7 @@ const MainPageView = () => {
     content: "content h-fit w-full",
     bgGradient: classNames(
       "transition-opacity duration-[400ms]",
-      { "opacity-0": !isPageDone, "opacity-1": isPageDone },
+      { "opacity-0": !isPageDone, "opacity-1": isPageDone,  },
       styles.gradientBackground
     ),
     contentSection: "w-full h-full",

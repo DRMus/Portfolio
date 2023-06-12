@@ -1,4 +1,4 @@
-import { useRef, FC, useLayoutEffect, useContext, useEffect } from "react";
+import { useRef, FC, useLayoutEffect, useContext } from "react";
 import { asyncCounter } from "../../utils/asyncCounter";
 
 import "./AboutView.scss";
@@ -18,8 +18,12 @@ const SkillCircle: FC<ISkillCircleProps> = (props) => {
   };
 
   useLayoutEffect(() => {
+    let intervalId = -1;
     if (isComponentInter) {
-      asyncCounter(counterOperations, props.percent, { timeout: 1500, isEaseOut: true });
+      intervalId = asyncCounter(counterOperations, props.percent, { timeout: 1500, isEaseOut: true });
+    }
+    return () => {
+      clearInterval(intervalId);
     }
   }, [isComponentInter]);
 
