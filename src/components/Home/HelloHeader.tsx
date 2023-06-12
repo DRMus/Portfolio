@@ -8,8 +8,9 @@ interface Props {
 const HelloHeader: FC<Props> = (props) => {
   return (
     <div>
-      <TextHeader className="!text-5xl">
-        Hello, My name is <span className="text-portfolio-white">Damir</span>
+      <TextHeader className="!text-6xl">
+        Hello
+        {/* Hello, My name is <span className="text-portfolio-white">Damir</span> */}
       </TextHeader>
     </div>
   );
