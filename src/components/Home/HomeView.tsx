@@ -32,8 +32,8 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
       </section>
       <section
         className={classNames("transition-all duration-500 p-4 overflow-hidden", {
-          "h-1/4": !isWelcomeAnimationPlaying,
-          "h-0 opacity-0": isWelcomeAnimationPlaying,
+          "h-1/4": navigationType != "POP",
+          "h-0 opacity-0": navigationType === "POP",
         })}
       >
         <nav className="flex items-center justify-between h-full w-full space-x-8">

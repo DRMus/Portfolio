@@ -1,4 +1,11 @@
-import { RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
+import {
+  RefObject,
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import HomeView from "./Home/HomeView";
 import styles from "./MainPageView.module.scss";
 import { MainContextValues } from "../contexts/MainContext";
@@ -8,6 +15,7 @@ import { Outlet, useLocation, useNavigationType, Location, useNavigate } from "r
 import FooterMenu from "./MainFragments/Footer/FooterMenu";
 import HeaderView from "./MainFragments/Header/HeaderView";
 import { LOCATION_STATES } from "../utils/constants";
+import BgParticles from "./MainFragments/BgParticles/BgParticles";
 
 function initialConditionIsHomePage(location: Location, navigationType: string): boolean {
   return location.pathname !== "/" && location.state === "byNavBar" && navigationType === "POP"
@@ -34,7 +42,7 @@ const MainPageView = () => {
   );
   const [isPageDone, setIsPageDone] = useState<boolean>(true);
 
-  const isScrollingToHomePageKey = useRef<boolean>(false); //key for initial scroll position by scrolling from element to home page 
+  const isScrollingToHomePageKey = useRef<boolean>(false); //key for initial scroll position by scrolling from element to home page
   const viewBlockRef = useRef<HTMLElement>(null);
   const homeBlockRef = useRef<HTMLElement>(null);
   const contentBlockRef = useRef<HTMLDivElement>(null);
@@ -80,7 +88,7 @@ const MainPageView = () => {
 
     // Calculating first scroll position, because scroll is going up after element was mount
     // (Condition "> 1000" is need, because scrollTop have a bug if value more then 1000)
-    let requiredScrollPosition = scrollTop > 1000 ? scrollTop : scrollTop + (newHeight - oldHeight); 
+    let requiredScrollPosition = scrollTop > 1000 ? scrollTop : scrollTop + (newHeight - oldHeight);
 
     // console.log(oldHeight, newHeight, scrollTop, mainBlockRef);
 
@@ -149,15 +157,16 @@ const MainPageView = () => {
     }
   }, [isPageChanging, isPageSelected, isHomePageVisiable]);
 
+  
   const componentClassNames = {
     main: classNames("relative scroll-config w-full h-full ", {
       "overflow-hidden": !isPageDone,
       "overflow-auto": isPageDone,
     }),
-    content: "content h-fit w-full",
+    content: "content h-fit w-full z-10",
     bgGradient: classNames(
-      "transition-opacity duration-[400ms]",
-      { "opacity-0": !isPageDone, "opacity-1": isPageDone,  },
+      "transition-opacity duration-[400ms] mix-blend-screen brightness-75",
+      { "opacity-0": !isPageDone, "opacity-1": isPageDone },
       styles.gradientBackground
     ),
     contentSection: "w-full h-full",
@@ -167,6 +176,7 @@ const MainPageView = () => {
     <>
       {!isHomePageVisiable && <HeaderView goHome={showHomePage} />}
       <main className={componentClassNames.main} ref={mainBlockRef}>
+        <BgParticles/>
         <div className={componentClassNames.bgGradient}></div>
         <div className={componentClassNames.content} ref={contentBlockRef}>
           <section className={componentClassNames.contentSection}>
