@@ -1,11 +1,4 @@
-import {
-  RefObject,
-  useContext,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import HomeView from "./Home/HomeView";
 import styles from "./MainPageView.module.scss";
 import { MainContextValues } from "../contexts/MainContext";
@@ -27,7 +20,9 @@ const MainPageView = () => {
   const {
     isPageSelected,
     contentBlockOldHeight,
+    isWelcomeAnimationPlaying,
     isPageChanging,
+    isParticlesDone,
     mainBlockRef,
     changeIsScrollAnimationPlaying,
     setContentBlockOldHeight,
@@ -96,7 +91,7 @@ const MainPageView = () => {
 
     const callbackAfter = () => {
       isScrollingToHomePageKey.current = false;
-      navigate("/");
+      navigate("/", { state: LOCATION_STATES.BY_HOME_BUTTON });
     };
 
     scrolltoElement(homeBlockRef, callbackAfter);
@@ -105,6 +100,7 @@ const MainPageView = () => {
   const showHomePage = () => {
     isScrollingToHomePageKey.current = true;
     setIsHomePageVisiable(true);
+    // next step is call useEffect[1]
   };
 
   const isHomePageCondition = (location: Location, navigationType: string) => {
@@ -139,6 +135,7 @@ const MainPageView = () => {
     }
   }, [viewBlockRef, location]);
 
+  //useEffect[1]
   useEffect(() => {
     if (isScrollingToHomePageKey.current) {
       scrollToHomePage();
@@ -157,15 +154,17 @@ const MainPageView = () => {
     }
   }, [isPageChanging, isPageSelected, isHomePageVisiable]);
 
-  
   const componentClassNames = {
     main: classNames("relative scroll-config w-full h-full ", {
       "overflow-hidden": !isPageDone,
       "overflow-auto": isPageDone,
     }),
-    content: "content h-fit w-full z-10",
+    content: classNames("content h-fit w-full z-10 transition-opacity duration-[600ms]", {
+      "opacity-100": isParticlesDone,
+      "opacity-0": !isParticlesDone,
+    }),
     bgGradient: classNames(
-      "transition-opacity duration-[400ms] mix-blend-screen brightness-75",
+      "transition-opacity duration-[500ms] mix-blend-screen brightness-75",
       { "opacity-0": !isPageDone, "opacity-1": isPageDone },
       styles.gradientBackground
     ),
@@ -176,14 +175,16 @@ const MainPageView = () => {
     <>
       {!isHomePageVisiable && <HeaderView goHome={showHomePage} />}
       <main className={componentClassNames.main} ref={mainBlockRef}>
-        <BgParticles/>
-        <div className={componentClassNames.bgGradient}></div>
+        <BgParticles />
+        {!isWelcomeAnimationPlaying && <div className={componentClassNames.bgGradient}></div>}
+
         <div className={componentClassNames.content} ref={contentBlockRef}>
           <section className={componentClassNames.contentSection}>
             {isHomePageVisiable && <HomeView ref={homeBlockRef} />}
             {isPageSelected && <Outlet context={[viewBlockRef]} />}
           </section>
         </div>
+
         {isPageChanging && <div className={styles.gradientSlider}></div>}
       </main>
       {!isHomePageVisiable && <FooterMenu />}

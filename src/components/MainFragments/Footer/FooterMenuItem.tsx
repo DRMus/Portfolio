@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { FC, HTMLAttributes, useContext, useState } from "react";
 import { useNavigate, To, useLocation } from "react-router-dom";
 import { MainContextValues } from "../../../contexts/MainContext";
+import { LOCATION_STATES } from "../../../utils/constants";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   to: To;
@@ -23,7 +24,7 @@ const FooterMenuItem: FC<Props> = ({ to, children, className, onClick, ...props 
     setIsSelected(true);
     changeIsPageChanging(true);
     setTimeout(() => {
-      navigate(to);
+      navigate(to, {state: LOCATION_STATES.BY_FOOTER_MENU});
       mainBlockRef.current?.scrollTo(0, 0);
     }, 500);
     setTimeout(() => {

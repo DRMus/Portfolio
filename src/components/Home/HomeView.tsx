@@ -1,4 +1,4 @@
-import { forwardRef, useContext, useEffect } from "react";
+import { forwardRef, useContext, useEffect, useRef } from "react";
 
 import { MainContextValues } from "../../contexts/MainContext";
 import NavSection from "./NavSection";
@@ -6,23 +6,28 @@ import NavSectionHeader from "./NavSectionHeader";
 import PageSection from "../templates/PageSection";
 
 import "./HomeView.scss";
-import { useNavigationType } from "react-router";
+import { useLocation, useNavigationType } from "react-router";
 import HelloHeader from "./HelloHeader";
 import classNames from "classnames";
 
 const HomeView = forwardRef<HTMLElement>((_, ref) => {
-  const { isWelcomeAnimationPlaying, changeIsWelcomeAnimationPlaying } =
+  const { isWelcomeAnimationPlaying, isScrollAnimationPlaying, changeIsWelcomeAnimationPlaying } =
     useContext(MainContextValues);
 
+  // const firstRender = useRef<boolean>(true);
+
   const navigationType = useNavigationType();
+  const location = useLocation();
 
   const welcomeAnimation = () => {
     changeIsWelcomeAnimationPlaying(true);
   };
 
   useEffect(() => {
-    if (navigationType === "POP") {
+    if (navigationType === "POP" && !isScrollAnimationPlaying && location.pathname === "/") {
       welcomeAnimation();
+    } else {
+      changeIsWelcomeAnimationPlaying(false)
     }
   }, [navigationType]);
   return (

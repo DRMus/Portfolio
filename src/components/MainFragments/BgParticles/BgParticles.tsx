@@ -1,10 +1,11 @@
-import { useCallback, useContext} from "react";
+import { useCallback, useContext, useEffect } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { RecursivePartial, IOptions, Engine, Container } from "tsparticles-engine";
 
 import "./BgParticles.scss";
 import { MainContextValues } from "../../../contexts/MainContext";
+import classNames from "classnames";
 
 const options: RecursivePartial<IOptions> = {
   fullScreen: {
@@ -47,7 +48,7 @@ const options: RecursivePartial<IOptions> = {
       },
     },
     number: {
-      value: 300,
+      value: 270,
       density: {
         enable: false,
         value_area: 800,
@@ -65,7 +66,7 @@ const options: RecursivePartial<IOptions> = {
       type: "circle",
     },
     opacity: {
-      value: 0.5,
+      value: 1,
       random: false,
       animation: {
         enable: true,
@@ -110,26 +111,24 @@ const options: RecursivePartial<IOptions> = {
   },
 };
 
-const BgParticles= () => {
-  const {  } = useContext(MainContextValues);
-  
+const BgParticles = () => {
+  const { isWelcomeAnimationPlaying, changeIsParticlesDone } = useContext(MainContextValues);
+
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
   }, []);
 
   const particlesLoaded = useCallback(async (container: Container | undefined) => {
-    console.log(container);
-    
+    changeIsParticlesDone(true);
   }, []);
-
   return (
-    <div style={{ height: `100%`, width: "100%", position: "fixed", zIndex: "-1" }}>
-      <Particles
-        id="tsparticles"
-        init={particlesInit}
-        loaded={particlesLoaded}
-        options={options}
-      />
+    <div
+      className={classNames("w-full h-full fixed z-[-1] transition-opacity duration-500", {
+        "opacity-100": isWelcomeAnimationPlaying,
+        "opacity-50": !isWelcomeAnimationPlaying,
+      })}
+    >
+      <Particles id="tsparticles" init={particlesInit} loaded={particlesLoaded} options={options} />
     </div>
   );
 };

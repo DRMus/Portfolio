@@ -18,12 +18,14 @@ interface MainContext {
   isScrollAnimationPlaying: boolean;
   isPageChanging: boolean;
   isWelcomeAnimationPlaying: boolean;
+  isParticlesDone: boolean;
   contentBlockOldHeight: RefObject<number>;
   mainBlockRef: RefObject<HTMLElement>;
   showSelectedPage: (state: boolean) => void;
   changeIsScrollAnimationPlaying: (state: boolean) => void;
   changeIsPageChanging: (state: boolean) => void;
   changeIsWelcomeAnimationPlaying: (state: boolean) => void;
+  changeIsParticlesDone: (state: boolean) => void;
   setContentBlockOldHeight: (ref: RefObject<HTMLDivElement> | undefined) => void;
 }
 
@@ -32,6 +34,7 @@ export const MainContextValues = createContext<MainContext>({
   isScrollAnimationPlaying: false,
   isPageChanging: false,
   isWelcomeAnimationPlaying: false,
+  isParticlesDone: false,
   contentBlockOldHeight: { current: -1 },
   mainBlockRef: { current: null },
   showSelectedPage: function (): void {
@@ -48,6 +51,9 @@ export const MainContextValues = createContext<MainContext>({
   },
   changeIsWelcomeAnimationPlaying: function (): void {
     throw new Error("Function not implemented.");
+  },
+  changeIsParticlesDone: function (): void {
+    throw new Error("Function not implemented.");
   }
 });
 
@@ -56,6 +62,7 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
   const [isScrollAnimationPlaying, setIsScrollAnimationPlaying] = useState<boolean>(false);
   const [isWelcomeAnimationPlaying, setIsWelcomeAnimationPlaying] = useState<boolean>(false);
   const [isPageChanging, setIsPageChanging] = useState<boolean>(false);
+  const [isParticlesDone, setIsParticlesDone] = useState<boolean>(false);
 
   const contentBlockOldHeight = useRef<number>(-1);
   const mainBlockRef = useRef<HTMLElement>(null);
@@ -76,6 +83,10 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
 
   const changeIsWelcomeAnimationPlaying = (state: boolean) => {
     setIsWelcomeAnimationPlaying(state);
+  }
+
+  const changeIsParticlesDone = (state: boolean) => {
+    setIsParticlesDone(state);
   }
 
   const setContentBlockOldHeight = (ref: RefObject<HTMLDivElement> | undefined) => {
@@ -102,12 +113,14 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
     isScrollAnimationPlaying,
     isPageChanging,
     isWelcomeAnimationPlaying,
+    isParticlesDone,
     contentBlockOldHeight,
     mainBlockRef,
     showSelectedPage,
     changeIsScrollAnimationPlaying,
     changeIsPageChanging,
     changeIsWelcomeAnimationPlaying,
+    changeIsParticlesDone,
     setContentBlockOldHeight,
   };
 
