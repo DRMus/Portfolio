@@ -1,4 +1,4 @@
-import { forwardRef, useContext, useEffect, useRef } from "react";
+import { forwardRef, useContext, useEffect } from "react";
 
 import { MainContextValues } from "../../contexts/MainContext";
 import NavSection from "./NavSection";
@@ -9,10 +9,11 @@ import "./HomeView.scss";
 import { useLocation, useNavigationType } from "react-router";
 import HelloHeader from "./HelloHeader";
 import classNames from "classnames";
+import { WelcomeAnimationContextValues } from "../../contexts/WelcomeAnimationContext";
 
 const HomeView = forwardRef<HTMLElement>((_, ref) => {
-  const { isWelcomeAnimationPlaying, isScrollAnimationPlaying, changeIsWelcomeAnimationPlaying } =
-    useContext(MainContextValues);
+  const { isScrollAnimationPlaying } = useContext(MainContextValues);
+  const { changeIsWelcomeAnimationPlaying, isWelcomeAnimationPlaying } = useContext(WelcomeAnimationContextValues);
 
   // const firstRender = useRef<boolean>(true);
 
@@ -27,18 +28,18 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
     if (navigationType === "POP" && !isScrollAnimationPlaying && location.pathname === "/") {
       welcomeAnimation();
     } else {
-      changeIsWelcomeAnimationPlaying(false)
+      changeIsWelcomeAnimationPlaying(false);
     }
   }, [navigationType]);
   return (
     <PageSection ref={ref} className="COMP_HomeView flex flex-col h-portfolio-block w-full !py-16">
       <section className="h-1/2 w-full flex items-center grow justify-center">
-        <HelloHeader isWelcomeAnimationPlaying={isWelcomeAnimationPlaying} />
+        <HelloHeader />
       </section>
       <section
         className={classNames("transition-all duration-500 p-4 overflow-hidden", {
-          "h-1/4": navigationType != "POP",
-          "h-0 opacity-0": navigationType === "POP",
+          "h-1/4": !isWelcomeAnimationPlaying,
+          "h-0 opacity-0": isWelcomeAnimationPlaying,
         })}
       >
         <nav className="flex items-center justify-between h-full w-full space-x-8">

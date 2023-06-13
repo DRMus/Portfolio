@@ -9,6 +9,7 @@ import FooterMenu from "./MainFragments/Footer/FooterMenu";
 import HeaderView from "./MainFragments/Header/HeaderView";
 import { LOCATION_STATES } from "../utils/constants";
 import BgParticles from "./MainFragments/BgParticles/BgParticles";
+import { WelcomeAnimationContextValues } from "../contexts/WelcomeAnimationContext";
 
 function initialConditionIsHomePage(location: Location, navigationType: string): boolean {
   return location.pathname !== "/" && location.state === "byNavBar" && navigationType === "POP"
@@ -20,13 +21,14 @@ const MainPageView = () => {
   const {
     isPageSelected,
     contentBlockOldHeight,
-    isWelcomeAnimationPlaying,
     isPageChanging,
     isParticlesDone,
     mainBlockRef,
     changeIsScrollAnimationPlaying,
     setContentBlockOldHeight,
   } = useContext(MainContextValues);
+
+  const {isWelcomeAnimationPlaying} = useContext(WelcomeAnimationContextValues)
 
   const location = useLocation();
   const navigate = useNavigate();

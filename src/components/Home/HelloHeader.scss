@@ -1,9 +1,14 @@
 .textAnimation {
   border-right: 3px solid var(--text-purple);
-  letter-spacing: 0.1em;
+  letter-spacing: 5px;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
+}
+
+.hideElement {
+  transition: opacity 1s;
+  opacity: 0;
 }
 
 @keyframes caret {

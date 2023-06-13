@@ -1,11 +1,12 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import { RecursivePartial, IOptions, Engine, Container } from "tsparticles-engine";
+import { RecursivePartial, IOptions, Engine } from "tsparticles-engine";
 
 import "./BgParticles.scss";
 import { MainContextValues } from "../../../contexts/MainContext";
 import classNames from "classnames";
+import { WelcomeAnimationContextValues } from "../../../contexts/WelcomeAnimationContext";
 
 const options: RecursivePartial<IOptions> = {
   fullScreen: {
@@ -84,7 +85,7 @@ const options: RecursivePartial<IOptions> = {
         offset: 0,
       },
       enable: true,
-      speed: 0.5,
+      speed: 0.65,
       direction: "none",
       random: true,
       straight: true,
@@ -112,13 +113,14 @@ const options: RecursivePartial<IOptions> = {
 };
 
 const BgParticles = () => {
-  const { isWelcomeAnimationPlaying, changeIsParticlesDone } = useContext(MainContextValues);
+  const { isWelcomeAnimationPlaying } = useContext(WelcomeAnimationContextValues);
+  const { changeIsParticlesDone } = useContext(MainContextValues);
 
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async (container: Container | undefined) => {
+  const particlesLoaded = useCallback(async () => {
     changeIsParticlesDone(true);
   }, []);
   return (

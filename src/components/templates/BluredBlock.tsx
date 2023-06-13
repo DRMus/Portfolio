@@ -1,5 +1,4 @@
 import { DetailedHTMLProps, FC, HTMLAttributes, useState } from "react";
-import { useNavigationType } from "react-router";
 import { IPosition } from "../../interfaces";
 import classNames from "classnames";
 
@@ -45,8 +44,6 @@ const BluredBlock: FC<Props> = ({
   onMouseLeave,
   ...props
 }) => {
-  const navigationType = useNavigationType();
-
   const [isMouseOver, setIsMouseOver] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<IPosition>({ x: 0, y: 0 });
 
@@ -66,7 +63,6 @@ const BluredBlock: FC<Props> = ({
   const componentClassNames = {
     parent: classNames(
       "group relative overflow-hidden h-full w-full rounded-lg cursor-pointer bg-gray-500/30 border-4 border-gray-500/30 transition-all duration-[350ms]",
-      { showNavBar: navigationType === "POP" },
       className
     ),
     mouseHover: classNames(
