@@ -14,8 +14,8 @@ type TCurrentText = {
   animationTime: number;
 };
 
-const welcomeText = ["Hello", "My name is Damir", "That's my portfolio", "Enjoy!"];
-const oneCharTime = 0.12;
+const welcomeText = ["Hello", "My name is Damir Mamusov", "That's my portfolio", "Enjoy!"];
+const oneCharTime = 0.1;
 
 const HelloHeader = () => {
   const { isWelcomeAnimationPlaying, changeIsWelcomeAnimationPlaying } = useContext(
@@ -77,7 +77,7 @@ const HelloHeader = () => {
   const headerAnimation = useMemo(
     () =>
       !isTextHidding && isWelcomeAnimationPlaying
-        ? `typing ${currentText.animationTime}s steps(${currentText.text.length}), caret 0.4s step-end infinite alternate`
+        ? `typing ${currentText.animationTime}s steps(${currentText.text.length}), caret 0.5s step-end infinite alternate`
         : "",
     [currentText, isTextHidding, isWelcomeAnimationPlaying]
   );
