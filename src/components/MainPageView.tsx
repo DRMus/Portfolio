@@ -10,6 +10,7 @@ import HeaderView from "./MainFragments/Header/HeaderView";
 import { LOCATION_STATES } from "../utils/constants";
 import BgParticles from "./MainFragments/BgParticles/BgParticles";
 import { WelcomeAnimationContextValues } from "../contexts/WelcomeAnimationContext";
+import AudioButton from "./MainFragments/AudioButton";
 
 function initialConditionIsHomePage(location: Location, navigationType: string): boolean {
   return location.pathname !== "/" && location.state === "byNavBar" && navigationType === "POP"
@@ -28,7 +29,7 @@ const MainPageView = () => {
     setContentBlockOldHeight,
   } = useContext(MainContextValues);
 
-  const {isWelcomeAnimationPlaying} = useContext(WelcomeAnimationContextValues)
+  const { isWelcomeAnimationPlaying } = useContext(WelcomeAnimationContextValues);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -102,7 +103,7 @@ const MainPageView = () => {
   const showHomePage = () => {
     isScrollingToHomePageKey.current = true;
     setIsHomePageVisiable(true);
-    // next step is call useEffect[1]
+    // next step is calling useEffect[1]
   };
 
   const isHomePageCondition = (location: Location, navigationType: string) => {
@@ -177,6 +178,7 @@ const MainPageView = () => {
     <>
       {!isHomePageVisiable && <HeaderView goHome={showHomePage} />}
       <main className={componentClassNames.main} ref={mainBlockRef}>
+        <AudioButton classname="fixed top-4 right-4" size="lg"/>
         <BgParticles />
         {!isWelcomeAnimationPlaying && <div className={componentClassNames.bgGradient}></div>}
 

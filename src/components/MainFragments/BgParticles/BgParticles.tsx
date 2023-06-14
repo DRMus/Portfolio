@@ -56,7 +56,7 @@ const options: RecursivePartial<IOptions> = {
       },
     },
     color: {
-      value: "#adadad",
+      value: "#ffffff",
       animation: {
         enable: false,
         speed: 20,
@@ -126,8 +126,8 @@ const BgParticles = () => {
   return (
     <div
       className={classNames("w-full h-full fixed z-[-1] transition-opacity duration-500", {
-        "opacity-100": isWelcomeAnimationPlaying,
-        "opacity-50": !isWelcomeAnimationPlaying,
+        "opacity-90": isWelcomeAnimationPlaying,
+        "opacity-30": !isWelcomeAnimationPlaying,
       })}
     >
       <Particles id="tsparticles" init={particlesInit} loaded={particlesLoaded} options={options} />

@@ -31,18 +31,25 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
       changeIsWelcomeAnimationPlaying(false);
     }
   }, [navigationType]);
+
+  const componentClassNames = {
+    pageSection: "COMP_HomeView flex flex-col h-portfolio-block w-full !py-16",
+    helloSection: "h-1/2 w-full flex items-center grow justify-center",
+    navSection: classNames("transition-all duration-500 p-4 overflow-hidden", {
+      "h-1/4": !isWelcomeAnimationPlaying,
+      "h-0 opacity-0": isWelcomeAnimationPlaying,
+    }),
+    navBar: "flex items-center justify-between h-full w-full space-x-8"
+  }
   return (
-    <PageSection ref={ref} className="COMP_HomeView flex flex-col h-portfolio-block w-full !py-16">
-      <section className="h-1/2 w-full flex items-center grow justify-center">
+    <PageSection ref={ref} className={componentClassNames.pageSection}>
+      <section className={componentClassNames.helloSection}>
         <HelloHeader />
       </section>
       <section
-        className={classNames("transition-all duration-500 p-4 overflow-hidden", {
-          "h-1/4": !isWelcomeAnimationPlaying,
-          "h-0 opacity-0": isWelcomeAnimationPlaying,
-        })}
+        className={componentClassNames.navSection}
       >
-        <nav className="flex items-center justify-between h-full w-full space-x-8">
+        <nav className={componentClassNames.navBar}>
           <NavSection page="about">
             <NavSectionHeader>About Me</NavSectionHeader>
           </NavSection>

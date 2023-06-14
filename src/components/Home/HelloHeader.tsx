@@ -7,13 +7,14 @@ import { WelcomeAnimationContextValues } from "../../contexts/WelcomeAnimationCo
 import { faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MainContextValues } from "../../contexts/MainContext";
+import HoverIsland from "../templates/HoverIsland";
 
 type TCurrentText = {
   text: string;
   animationTime: number;
 };
 
-const welcomeText = ["Hello", "My name is Damir", "That's my portfolio", "Enjoy"];
+const welcomeText = ["Hello", "My name is Damir", "That's my portfolio", "Enjoy!"];
 const oneCharTime = 0.12;
 
 const HelloHeader = () => {
@@ -28,6 +29,7 @@ const HelloHeader = () => {
   const isWelcomePlayingRef = useRef<boolean>(false); // thats key for setTimeout area
 
   const stopWelcomeAnimation = () => {
+    setCurrentText({ text: "", animationTime: 0 });
     changeIsWelcomeAnimationPlaying(false);
     isWelcomePlayingRef.current = false;
   };
@@ -46,7 +48,7 @@ const HelloHeader = () => {
         }
 
         if (idx >= welcomeTextArray.length) {
-          changeIsWelcomeAnimationPlaying(false);
+          stopWelcomeAnimation();
           return;
         }
 
@@ -88,6 +90,8 @@ const HelloHeader = () => {
     }),
     skipSpan:
       "absolute bottom-6 right-6 text-portfolio-white text-xl transition-colors cursor-pointer hover:text-portfolio-purple-light",
+    replaySpan:
+      "absolute bottom-4 right-4 p-2 rounded-full text-portfolio-white/30 transition-colors cursor-pointer hover:text-portfolio-purple",
   };
   return (
     <div>
@@ -107,12 +111,12 @@ const HelloHeader = () => {
         </span>
       )}
       {!isWelcomeAnimationPlaying && !isPageSelected && (
-        <span
-          className={componentClassNames.skipSpan}
+        <HoverIsland
+          className={componentClassNames.replaySpan}
           onClick={() => changeIsWelcomeAnimationPlaying(true)}
         >
-          <FontAwesomeIcon icon={faArrowRotateLeft} title="Replay animation" />
-        </span>
+          <FontAwesomeIcon icon={faArrowRotateLeft} title="Replay animation" size="xl" />
+        </HoverIsland>
       )}
     </div>
   );

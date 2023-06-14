@@ -32,7 +32,7 @@ export const AboutContextProvider: FC<Props> = ({ children }) => {
   const getSectionKey = (): number => sectionKeyGenerator.next().value;
 
   const onEntryObserver: TObserverAction = (
-    element: HTMLElement,
+    _: HTMLElement,
     changes: IntersectionObserverEntry,
     elementIndex: number
   ) => {

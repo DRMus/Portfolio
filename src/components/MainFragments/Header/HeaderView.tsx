@@ -1,8 +1,10 @@
-import { HomeFilled } from "@ant-design/icons";
 import classNames from "classnames";
 
 import styles from "./Header.module.scss";
 import { FC } from "react";
+import HoverIsland from "../../templates/HoverIsland";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHouse } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   goHome: () => void;
@@ -11,19 +13,18 @@ interface Props {
 const HeaderView: FC<Props> = (props) => {
   const componentClassNames = {
     header: classNames(
-      "group fixed top-0 left-1/2 -translate-x-1/2 mt-6 z-30 px-3 pb-3 pt-1 cursor-pointer transition-all duration-300 rounded-full ",
-      "hover:bg-gray-700/20 hover:backdrop-blur-sm"
+      "fixed top-0 left-1/2 -translate-x-1/2 mt-6 z-30 px-3 pb-3 pt-2.5 cursor-pointer rounded-full ",
     ),
     icon: classNames(
-      "text-portfolio-white/30 text-2xl h-fit justify-center transition-all duration-300",
+      "text-portfolio-white/30 justify-center transition-all duration-300",
       "group-hover:text-portfolio-purple",
       styles.showHeader
     ),
   };
   return (
-    <header onClick={props.goHome} className={componentClassNames.header}>
-      <HomeFilled className={componentClassNames.icon} />
-    </header>
+    <HoverIsland onClick={props.goHome} className={componentClassNames.header}>
+      <FontAwesomeIcon icon={faHouse} className={componentClassNames.icon} size="xl"/>
+    </HoverIsland>
   );
 };
 
