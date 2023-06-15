@@ -8,8 +8,8 @@ interface Props {
 }
 
 const DescriptionPersonLine: FC<Props> = ({ label, paragraph }) => (
-  <div className="flex gap-1.5 items-center">
-    <TextLabel className="text-base !m-0 w-16 text-right">{label}</TextLabel>
+  <div className="flex gap-2 items-center">
+    <TextLabel className="text-lg !m-0 w-20 text-right">{label}</TextLabel>
     <TextParagraph className="text-xl">{paragraph}</TextParagraph>
   </div>
 );
@@ -18,7 +18,7 @@ const MyDescription = () => {
   return (
     <div className="flex flex-col items-center gap-y-6 w-1/3">
       <div className="img w-[280px] h-[280px] bg-gray-500 rounded-full"></div>
-      <div className="w-fit space-y-1">
+      <div className="w-fit space-y-1.5">
         <DescriptionPersonLine label="Name:" paragraph="Muslimov Damir" />
         <DescriptionPersonLine label="Age:" paragraph="21" />
         <DescriptionPersonLine label="Location:" paragraph="Russia, Ulyanovsk" />

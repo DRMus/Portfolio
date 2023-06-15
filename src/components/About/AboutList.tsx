@@ -16,7 +16,7 @@ const AboutList = () => {
   }, []);
   return (
     <div className="space-y-24">
-      <div className="flex gap-4">
+      <div className="flex items-between gap-4">
         <MyDescription />
         <SkillsGroup />
       </div>
