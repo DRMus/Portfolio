@@ -11,13 +11,14 @@ import HelloHeader from "./HelloHeader";
 import classNames from "classnames";
 import { WelcomeAnimationContextValues } from "../../contexts/WelcomeAnimationContext";
 
+//TODO: Нужно переделать изменение состояние isParticlesDone под рендер компонента nav,
+//      а появление элемента реализовать через animation
+
 const HomeView = forwardRef<HTMLElement>((_, ref) => {
   const { isScrollAnimationPlaying, isParticlesDone } = useContext(MainContextValues);
   const { changeIsWelcomeAnimationPlaying, isWelcomeAnimationPlaying } = useContext(
     WelcomeAnimationContextValues
   );
-
-  // const firstRender = useRef<boolean>(true);
 
   const navigationType = useNavigationType();
   const location = useLocation();
