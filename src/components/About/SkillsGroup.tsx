@@ -31,7 +31,7 @@ const SkillsGroup = () => {
     isComponentInter,
   };
   return (
-    <div data-aboutsection={sectionKey} className="flex flex-wrap gap-y-8 justify-around">
+    <div data-aboutsection={sectionKey} className="flex flex-wrap gap-y-12 justify-around">
       <SkillCircleContextValues.Provider value={value}>
         <SkillCircle
           name="React"

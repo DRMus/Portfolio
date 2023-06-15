@@ -14,7 +14,7 @@ const CircleSvg: FC<ISkillCircleProps> = (props) => {
         if (!sliderRef.current) {
           return;
         }
-        sliderRef.current.style.strokeDashoffset = `${565 - 565 * (props.percent / 100)}`;
+        sliderRef.current.style.strokeDashoffset = `${503 - 503 * (props.percent / 100)}`;
       }, 100);
     }
   }, [sliderRef, props.percent, isComponentInter]);
@@ -30,16 +30,16 @@ const CircleSvg: FC<ISkillCircleProps> = (props) => {
       <circle
         ref={sliderRef}
         className="circle"
-        cx="95"
-        cy="95"
-        r="90"
+        cx="87"
+        cy="87"
+        r="80"
         style={{ stroke: `url(#${gradientId})` }}
       />
       <circle
         className="circle-static"
-        cx="95"
-        cy="95"
-        r="90"
+        cx="87"
+        cy="87"
+        r="80"
         style={{ stroke: `url(#${gradientId})` }}
       />
     </svg>

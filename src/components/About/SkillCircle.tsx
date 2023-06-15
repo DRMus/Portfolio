@@ -28,12 +28,12 @@ const SkillCircle: FC<ISkillCircleProps> = (props) => {
   }, [isComponentInter]);
 
   return (
-    <div className="flex basis-1/3 justify-center">
-      <div className="relative w-[190px] h-[190px]">
+    <div className="flex basis-1/3 justify-center items-center">
+      <div className="relative w-[175px] h-[175px]">
         <CircleSvg {...props} />
 
         <div
-          className="absolute flex flex-col gap-1 text-center text-2xl font-bold top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          className="absolute flex flex-col gap-1 text-center text-xl font-bold top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
           style={{ color: props.gradientColorStop || "" }}
         >
           <span>{props.name}</span>

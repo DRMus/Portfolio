@@ -12,8 +12,10 @@ import classNames from "classnames";
 import { WelcomeAnimationContextValues } from "../../contexts/WelcomeAnimationContext";
 
 const HomeView = forwardRef<HTMLElement>((_, ref) => {
-  const { isScrollAnimationPlaying } = useContext(MainContextValues);
-  const { changeIsWelcomeAnimationPlaying, isWelcomeAnimationPlaying } = useContext(WelcomeAnimationContextValues);
+  const { isScrollAnimationPlaying, isParticlesDone } = useContext(MainContextValues);
+  const { changeIsWelcomeAnimationPlaying, isWelcomeAnimationPlaying } = useContext(
+    WelcomeAnimationContextValues
+  );
 
   // const firstRender = useRef<boolean>(true);
 
@@ -39,27 +41,27 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
       "h-1/4": !isWelcomeAnimationPlaying,
       "h-0 opacity-0": isWelcomeAnimationPlaying,
     }),
-    navBar: "flex items-center justify-between h-full w-full space-x-8"
-  }
+    navBar: "flex items-center justify-between h-full w-full space-x-8",
+  };
   return (
     <PageSection ref={ref} className={componentClassNames.pageSection}>
       <section className={componentClassNames.helloSection}>
         <HelloHeader />
       </section>
-      <section
-        className={componentClassNames.navSection}
-      >
-        <nav className={componentClassNames.navBar}>
-          <NavSection page="about">
-            <NavSectionHeader>About Me</NavSectionHeader>
-          </NavSection>
-          <NavSection page="projects">
-            <NavSectionHeader>Projects</NavSectionHeader>
-          </NavSection>
-          <NavSection page="contacts">
-            <NavSectionHeader>Contacts</NavSectionHeader>
-          </NavSection>
-        </nav>
+      <section className={componentClassNames.navSection}>
+        {isParticlesDone && (
+          <nav className={componentClassNames.navBar}>
+            <NavSection page="about">
+              <NavSectionHeader>About Me</NavSectionHeader>
+            </NavSection>
+            <NavSection page="projects">
+              <NavSectionHeader>Projects</NavSectionHeader>
+            </NavSection>
+            <NavSection page="contacts">
+              <NavSectionHeader>Contacts</NavSectionHeader>
+            </NavSection>
+          </nav>
+        )}
       </section>
     </PageSection>
   );

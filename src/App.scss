@@ -26,12 +26,15 @@ body {
 
   &::-webkit-scrollbar {
     display: block;
-    width: 10px;
+    width: 12px;
   }
 
   &::-webkit-scrollbar-thumb {
     background: #27272a;
     border-radius: 20px;
+    &:hover {
+      background: #2f2f33;
+    }
   }
 
   &::-webkit-scrollbar-track {

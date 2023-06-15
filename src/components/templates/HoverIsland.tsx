@@ -1,11 +1,12 @@
 import classNames from "classnames";
-import { FC, HTMLAttributes } from "react";
+import { FC, HTMLAttributes, forwardRef } from "react";
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
-const HoverIsland: FC<Props> = ({ children, className, ...props }) => {
+const HoverIsland = forwardRef<HTMLDivElement, Props>(({ children, className, ...props }, ref) => {
   return (
     <div
+      ref={ref}
       className={classNames(
         "group transition-all duration-300",
         "hover:bg-gray-700/20 hover:backdrop-blur-sm",
@@ -16,6 +17,6 @@ const HoverIsland: FC<Props> = ({ children, className, ...props }) => {
       {children}
     </div>
   );
-};
+});
 
 export default HoverIsland;

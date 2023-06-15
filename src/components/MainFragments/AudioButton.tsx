@@ -2,7 +2,7 @@ import { SizeProp } from "@fortawesome/fontawesome-svg-core";
 import { faVolumeHigh, faVolumeMute } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classNames from "classnames";
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useRef, useState } from "react";
 import { useAudio } from "../../utils/useAudio";
 import { WelcomeAnimationContextValues } from "../../contexts/WelcomeAnimationContext";
 
@@ -22,8 +22,11 @@ const AudioButton: FC<Props> = (props) => {
 
   const backgroundAmbient = useAudio(backgroundAmbientSfx, true);
 
+  const volumeIconRef = useRef<HTMLDivElement>(null);
+
   const soundStop = () => {
     backgroundAmbient.stop();
+
     setIsMuted(true);
   };
 
@@ -34,16 +37,21 @@ const AudioButton: FC<Props> = (props) => {
 
   const soundPlay = () => {
     // cause browser policy don't allow playing sound without user actions,
-    // we will play after user click on something.
+    // we will play audio after user click on something.
 
-    const tryToPlay = () => {
-      backgroundAmbient.play();
-      setIsMuted(backgroundAmbient.audio.paused);
+    const tryToPlay = (ev: MouseEvent | Event) => {
+      if (!volumeIconRef.current || !ev.isTrusted) {
+        return;
+      }
+      volumeIconRef.current.click();
+      setIsMuted(false);
       window.removeEventListener("click", tryToPlay);
+      window.removeEventListener("touch", tryToPlay);
     };
 
     backgroundAmbient.play().catch(() => {
       window.addEventListener("click", tryToPlay);
+      window.addEventListener("touch", tryToPlay);
     });
     setIsMuted(backgroundAmbient.audio.paused);
   };
@@ -52,11 +60,14 @@ const AudioButton: FC<Props> = (props) => {
     if (isTouched) {
       return;
     }
+
     isWelcomeAnimationPlaying ? soundStop() : soundPlay();
+    
   }, [isWelcomeAnimationPlaying]);
 
   return (
     <HoverIsland
+      ref={volumeIconRef}
       className={classNames("p-2 rounded-full cursor-pointer z-20", props.classname)}
       onClick={() => {
         !isTouched && setIsTouched(true);

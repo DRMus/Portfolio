@@ -13,6 +13,7 @@ export function useAudio(path: string, loop: boolean = false, volume: number = 0
 
   useEffect(() => {
     setAudio(createAudio());
+    return () => audio.remove();
   }, [path]);
 
   return {
@@ -25,8 +26,7 @@ export function useAudio(path: string, loop: boolean = false, volume: number = 0
       audio.pause();
     },
     play: function () {
-      
-      return audio.play()
+      return audio.play();
     },
     volume: function (value: number) {
       audio.volume = value;
