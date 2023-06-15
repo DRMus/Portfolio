@@ -40,11 +40,14 @@ const AudioButton: FC<Props> = (props) => {
     // we will play audio after user click on something.
 
     const tryToPlay = (ev: MouseEvent | Event) => {
-      if (!volumeIconRef.current || !ev.isTrusted) {
+      if (
+        !volumeIconRef.current ||
+        volumeIconRef.current.contains(ev.target as Node) ||
+        !ev.isTrusted
+      ) {
         return;
       }
       volumeIconRef.current.click();
-      setIsMuted(false);
       window.removeEventListener("click", tryToPlay);
       window.removeEventListener("touch", tryToPlay);
     };
@@ -62,7 +65,6 @@ const AudioButton: FC<Props> = (props) => {
     }
 
     isWelcomeAnimationPlaying ? soundStop() : soundPlay();
-    
   }, [isWelcomeAnimationPlaying]);
 
   return (
