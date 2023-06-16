@@ -1,3 +1,10 @@
 .showNavBar {
-  animation: var(--animation-show-scale);
+  animation: showNav 500ms ease-in-out;
+}
+
+@keyframes showNav {
+  from {
+    height: 0;
+    opacity: 0;
+  }
 }

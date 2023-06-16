@@ -23,6 +23,7 @@ const AudioButton: FC<Props> = (props) => {
   const backgroundAmbient = useAudio(backgroundAmbientSfx, true);
 
   const volumeIconRef = useRef<HTMLDivElement>(null);
+  const isMutedFromLocalStorage = useRef<boolean>(false);
 
   const soundStop = () => {
     backgroundAmbient.stop();
@@ -38,6 +39,10 @@ const AudioButton: FC<Props> = (props) => {
   const soundPlay = () => {
     // cause browser policy don't allow playing sound without user actions,
     // we will play audio after user click on something.
+
+    if (isMutedFromLocalStorage.current) {
+      return;
+    }
 
     const tryToPlay = (ev: MouseEvent | Event) => {
       if (
@@ -67,6 +72,15 @@ const AudioButton: FC<Props> = (props) => {
     isWelcomeAnimationPlaying ? soundStop() : soundPlay();
   }, [isWelcomeAnimationPlaying]);
 
+  useEffect(() => {
+    if (import.meta.env.DEV) {
+      let muted = localStorage.getItem("AUDIO_MUTED");
+      if (muted === "true") {
+        isMutedFromLocalStorage.current = true;
+        setIsMuted(true);
+      }
+    }
+  }, []);
   return (
     <HoverIsland
       ref={volumeIconRef}

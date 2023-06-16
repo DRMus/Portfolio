@@ -11,7 +11,7 @@ const AboutView = () => {
   return (
     <PageSection
       ref={viewBlockRef}
-      className="COMP_AboutView w-full h-[2000px]"
+      className="COMP_AboutView w-full"
       header={"About Me"}
     >
       <AboutContextProvider>

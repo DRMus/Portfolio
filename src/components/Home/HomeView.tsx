@@ -11,11 +11,8 @@ import HelloHeader from "./HelloHeader";
 import classNames from "classnames";
 import { WelcomeAnimationContextValues } from "../../contexts/WelcomeAnimationContext";
 
-//TODO: Нужно переделать изменение состояние isParticlesDone под рендер компонента nav,
-//      а появление элемента реализовать через animation
-
 const HomeView = forwardRef<HTMLElement>((_, ref) => {
-  const { isScrollAnimationPlaying, isParticlesDone } = useContext(MainContextValues);
+  const { isScrollAnimationPlaying } = useContext(MainContextValues);
   const { changeIsWelcomeAnimationPlaying, isWelcomeAnimationPlaying } = useContext(
     WelcomeAnimationContextValues
   );
@@ -38,9 +35,8 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
   const componentClassNames = {
     pageSection: "COMP_HomeView flex flex-col h-portfolio-block w-full !py-16",
     helloSection: "h-1/2 w-full flex items-center grow justify-center",
-    navSection: classNames("transition-all duration-500 p-4 overflow-hidden", {
-      "h-1/4": !isWelcomeAnimationPlaying,
-      "h-0 opacity-0": isWelcomeAnimationPlaying,
+    navSection: classNames("transition-all duration-500 p-4 overflow-hidden h-1/4", {
+      showNavBar: navigationType === "POP",
     }),
     navBar: "flex items-center justify-between h-full w-full space-x-8",
   };
@@ -49,8 +45,9 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
       <section className={componentClassNames.helloSection}>
         <HelloHeader />
       </section>
-      <section className={componentClassNames.navSection}>
-        {isParticlesDone && (
+
+      {!isWelcomeAnimationPlaying && (
+        <section className={componentClassNames.navSection}>
           <nav className={componentClassNames.navBar}>
             <NavSection page="about">
               <NavSectionHeader>About Me</NavSectionHeader>
@@ -62,8 +59,8 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
               <NavSectionHeader>Contacts</NavSectionHeader>
             </NavSection>
           </nav>
-        )}
-      </section>
+        </section>
+      )}
     </PageSection>
   );
 });
