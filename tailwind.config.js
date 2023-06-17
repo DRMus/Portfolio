@@ -22,6 +22,9 @@ export default {
       minHeight: {
         "portfolio-block": "100vh",
       },
+      maxWidth: {
+        "portfolio-main": "1300px",
+      },
       boxShadow: {
         "portfolio-purple": "0 0 20px rgba(126, 34, 206, 0)",
       },

@@ -20,7 +20,7 @@ const DescriptionPersonLine: FC<Props> = ({ label, paragraph }) => (
 const MyDescription = () => {
   return (
     <div className="flex flex-col items-center gap-y-6 w-1/3">
-      <div className="img w-[280px] h-[280px] rounded-full border-4 border-portfolio-purple overflow-hidden">
+      <div className="img w-[280px] h-[280px] rounded-full border-4 border-portfolio-purple overflow-hidden shadow-portfolio-purple">
         <img src={Photo} alt="" className="object-contain"/>
       </div>
       <div className="w-fit space-y-1.5">
