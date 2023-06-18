@@ -5,6 +5,7 @@ import "./AboutView.scss";
 import { ISkillCircleProps } from "../../interfaces";
 import CircleSvg from "./CircleSvg";
 import { SkillCircleContextValues } from "./SkillsGroup";
+import classNames from "classnames";
 
 const SkillCircle: FC<ISkillCircleProps> = (props) => {
   const { isComponentInter } = useContext(SkillCircleContextValues);
@@ -28,7 +29,7 @@ const SkillCircle: FC<ISkillCircleProps> = (props) => {
   }, [isComponentInter]);
 
   return (
-    <div className="flex basis-1/3 justify-center items-center">
+    <div className={classNames("flex basis-1/3 justify-center items-center", "sm:max-md:basis-1/2")}>
       <div className="relative w-[175px] h-[175px]">
         <CircleSvg {...props} />
 
