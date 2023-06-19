@@ -28,6 +28,9 @@ export default {
       boxShadow: {
         "portfolio-purple": "0 0 20px rgba(126, 34, 206, 0)",
       },
+      screens: {
+        xs: "380px",
+      },
     },
   },
   plugins: [],

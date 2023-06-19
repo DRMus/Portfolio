@@ -14,7 +14,7 @@ type TCurrentText = {
   animationTime: number;
 };
 
-const welcomeText = ["Hello", "My name is Damir Mamusov", "That's my portfolio", "Enjoy!"];
+const welcomeText = ["Hello", "My name is Damir", "That's my portfolio", "Enjoy!"];
 const oneCharTime = 0.1;
 
 const HelloHeader = () => {
@@ -86,8 +86,9 @@ const HelloHeader = () => {
     header: classNames(
       "py-2",
       "md:max-lg:text-5xl",
-      "sm:max-md:text-center",
-      "max-sm:text-center max-sm:text-4xl",
+      "sm:max-md:text-center max-md:tracking-normal",
+      "xs:max-sm:text-center xs:max-sm:text-5xl",
+      "max-xs:text-center max-xs:text-4xl",
       {
         hideElement: isTextHidding,
         "text-7xl textAnimation": isWelcomeAnimationPlaying,

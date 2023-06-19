@@ -27,3 +27,25 @@
   animation: var(--animation-hide-opacity);
   animation-duration: 250ms;
 }
+
+@media not all and (min-width: 768px) {
+  .vk-icon-bg {
+    background-color: rgba(0, 119, 255, 0.2) !important;
+    border-color: rgba(0, 119, 255, 0.5) !important;
+    box-shadow: 0 0 20px rgba(0, 119, 255, 0.5) !important;
+  }
+  
+  .telegram-icon-bg {
+    background-color: rgba(0, 174, 237, 0.3) !important;
+    border-color: rgba(0, 174, 237, 0.6) !important;
+    box-shadow: 0 0 20px rgba(0, 174, 237, 0.502) !important;
+  }
+  
+  .github-icon-bg {
+    box-shadow: 0 0 20px rgba(226, 232, 240, 0.5) !important;
+  }
+  
+  .email-icon-bg {
+    box-shadow: 0 0 20px rgba(234, 179, 8, 0.5) !important;
+  }
+}

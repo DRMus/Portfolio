@@ -38,7 +38,8 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
     navSection: classNames(
       "transition-all duration-500 p-4 overflow-hidden h-1/4",
       "sm:max-md:h-4/6",
-      "max-sm:h-[60%]",
+      "xs:max-sm:h-[60%]",
+      "max-xs:h-[55%]",
       {
         showNavBar: navigationType === "POP",
       }
@@ -46,8 +47,9 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
     navBar: classNames(
       "flex items-center justify-between h-full w-full",
       "md:space-x-8",
-      "max-sm:flex-col sm:max-md:space-y-8 sm:max-md:px-16",
-      "max-sm:flex-col max-sm:space-y-8 max-sm:px-4"
+      "sm:max-md:flex-col sm:max-md:space-y-8 sm:max-md:px-16",
+      "xs:max-sm:flex-col xs:max-sm:space-y-6 xs:max-sm:px-4",
+      "max-xs:flex-col max-xs:space-y-4 max-xs:px-2",
     ),
   };
   return (
