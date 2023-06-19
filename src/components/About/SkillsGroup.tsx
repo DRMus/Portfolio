@@ -1,38 +1,12 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import SkillCircle from "./SkillCircle";
-import { AboutContextValues } from "../../contexts/AboutContext";
-import { TObserverCallback } from "../../interfaces";
-
-interface SkillCircleContext {
-  isComponentInter: boolean;
-}
-
-export const SkillCircleContextValues = createContext<SkillCircleContext>({
-  isComponentInter: false,
-});
+import TextHeader from "../templates/TextHeader";
+import classNames from "classnames";
 
 const SkillsGroup = () => {
-  const { getSectionKey, addSectionCallBack } = useContext(AboutContextValues);
-
-  const [isComponentInter, setIsComponentInter] = useState<boolean>(false);
-  const sectionKey: number = useMemo(() => getSectionKey(), []);
-
-  const sectionCallback: TObserverCallback = (state: boolean, intersectionRatio?: number) => {
-    if (state && intersectionRatio && intersectionRatio > 0.2) {
-      setIsComponentInter(true);
-    }
-  };
-
-  useEffect(() => {
-    addSectionCallBack(sectionCallback);
-  }, []);
-
-  const value: SkillCircleContext = {
-    isComponentInter,
-  };
   return (
-    <div data-aboutsection={sectionKey} className="flex flex-wrap gap-y-12 justify-around">
-      <SkillCircleContextValues.Provider value={value}>
+    <div className="flex flex-col items-center">
+      <TextHeader className={classNames("mb-16", "lg:hidden")}>Skills</TextHeader>
+      <div className="flex flex-wrap gap-y-12 justify-around">
         <SkillCircle
           name="React"
           percent={60}
@@ -69,7 +43,7 @@ const SkillsGroup = () => {
           gradientColorStart="#0070ba"
           gradientColorStop="#29a8e0"
         />
-      </SkillCircleContextValues.Provider>
+      </div>
     </div>
   );
 };

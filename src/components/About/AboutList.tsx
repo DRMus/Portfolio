@@ -22,6 +22,7 @@ const AboutList = () => {
           "flex items-between gap-x-4",
           "md:max-lg:flex-col md:max-lg:gap-y-12 md:max-lg:items-center",
           "sm:max-md:flex-col sm:max-md:gap-y-16 sm:max-md:items-center",
+          "max-sm:flex-col max-sm:gap-y-28 max-sm:items-center",
         )}
       >
         <MyDescription />

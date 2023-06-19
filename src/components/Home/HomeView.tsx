@@ -34,11 +34,21 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
 
   const componentClassNames = {
     pageSection: "COMP_HomeView flex flex-col h-portfolio-block w-full !py-16",
-    helloSection: "h-1/2 w-full flex items-center grow justify-center",
-    navSection: classNames("transition-all duration-500 p-4 overflow-hidden h-1/4", {
-      showNavBar: navigationType === "POP",
-    }),
-    navBar: "flex items-center justify-between h-full w-full space-x-8",
+    helloSection: "w-full flex items-center grow justify-center",
+    navSection: classNames(
+      "transition-all duration-500 p-4 overflow-hidden h-1/4",
+      "sm:max-md:h-4/6",
+      "max-sm:h-[60%]",
+      {
+        showNavBar: navigationType === "POP",
+      }
+    ),
+    navBar: classNames(
+      "flex items-center justify-between h-full w-full",
+      "md:space-x-8",
+      "max-sm:flex-col sm:max-md:space-y-8 sm:max-md:px-16",
+      "max-sm:flex-col max-sm:space-y-8 max-sm:px-4"
+    ),
   };
   return (
     <PageSection ref={ref} className={componentClassNames.pageSection}>

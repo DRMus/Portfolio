@@ -1,9 +1,7 @@
-import { FC, useLayoutEffect, useMemo, useRef, useContext } from "react";
+import { FC, useLayoutEffect, useMemo, useRef } from "react";
 import { ISkillCircleProps } from "../../interfaces";
-import { SkillCircleContextValues } from "./SkillsGroup";
 
-const CircleSvg: FC<ISkillCircleProps> = (props) => {
-  const { isComponentInter } = useContext(SkillCircleContextValues);
+const CircleSvg: FC<ISkillCircleProps> = ({isComponentInter, ...props}) => {
   const gradientId = useMemo<string>(() => `gradientStyle${Math.random()}`, []);
 
   const sliderRef = useRef<SVGCircleElement>(null);

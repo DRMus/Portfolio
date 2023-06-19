@@ -83,16 +83,29 @@ const HelloHeader = () => {
   );
 
   const componentClassNames = {
-    header: classNames("py-2", {
-      hideElement: isTextHidding,
-      "!text-7xl textAnimation": isWelcomeAnimationPlaying,
-      "!text-6xl transition-opacity duration-500": !isWelcomeAnimationPlaying,
-    }),
-    skipSpan:
-      "absolute bottom-6 right-6 text-portfolio-white text-xl transition-colors cursor-pointer hover:text-portfolio-purple-light",
+    header: classNames(
+      "py-2",
+      "md:max-lg:text-5xl",
+      "sm:max-md:text-center",
+      "max-sm:text-center max-sm:text-4xl",
+      {
+        hideElement: isTextHidding,
+        "text-7xl textAnimation": isWelcomeAnimationPlaying,
+        "text-6xl transition-opacity duration-500": !isWelcomeAnimationPlaying,
+      }
+    ),
+    headerSpan: classNames(
+      "text-portfolio-white",
+      "sm:max-md:block sm:max-md:my-1.5",
+      "max-sm:block max-sm:my-1.5"
+    ),
+    skipSpan: classNames(
+      "absolute bottom-6 right-6 text-portfolio-white text-xl transition-colors cursor-pointer hover:text-portfolio-purple-light"
+    ),
     replaySpan:
       "absolute bottom-4 right-4 p-2 rounded-full text-portfolio-white/30 transition-colors cursor-pointer hover:text-portfolio-purple",
   };
+
   return (
     <div>
       <TextHeader className={componentClassNames.header} style={{ animation: headerAnimation }}>
@@ -100,7 +113,7 @@ const HelloHeader = () => {
           currentText.text
         ) : (
           <>
-            Hello, that's <span className="text-portfolio-white">Web Developer</span> blog
+            Hello, that's <span className={componentClassNames.headerSpan}>Web Developer</span> blog
           </>
         )}
       </TextHeader>

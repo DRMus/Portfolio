@@ -48,6 +48,7 @@ export interface IFAIconProps
 
 export interface ISkillCircleProps {
   percent: number;
+  isComponentInter?: boolean;
   name?: string;
   gradientColorStart?: string;
   gradientColorStop?: string;
