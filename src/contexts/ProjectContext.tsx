@@ -34,11 +34,16 @@ export const ProjectContextProvider: FC<Props> = ({ children }) => {
     changes: IntersectionObserverEntry,
     elementIndex: number
   ) => {
-    element.style.opacity = `${changes.intersectionRatio}`;
-    element.style.filter = `blur(${5 - changes.intersectionRatio * 5}px)`;
-    
+    if (changes.intersectionRatio < 0.9) {
+      element.style.opacity = `${changes.intersectionRatio}`;
+      element.style.filter = `blur(${5 - changes.intersectionRatio * 5}px)`;
+    } else {
+      element.style.opacity = `1`;
+      element.style.filter = `blur(0px)`;
+    }
+
     if (elementIndex + 1 > gifVisibilityCallBacks.current.length) {
-      return
+      return;
     }
 
     try {

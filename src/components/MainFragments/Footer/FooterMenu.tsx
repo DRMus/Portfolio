@@ -11,6 +11,7 @@ const FooterMenu = () => {
         className={classNames(
           "w-fit flex gap-x-6 my-0 px-6 py-3 mx-auto items-center rounded-lg text-center",
           "max-md:px-4",
+          "max-sm:px-4 max-sm:py-2",
           styles.showFooter
         )}
       >

@@ -1,4 +1,4 @@
-import { useContext, useLayoutEffect } from "react";
+import { ReactNode, useContext, useLayoutEffect } from "react";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 
@@ -30,6 +30,27 @@ import DungeonGameLoad from "../../assets/dungeon_game_load.png";
 import FileManagerLoad from "../../assets/file_manager_load.png";
 import AutomatedPlaceOfTheCuratorLoad from "../../assets/automated_place_of_the_curator_load.png";
 import BirdShopLoad from "../../assets/bird_shop_load.png";
+import classNames from "classnames";
+
+interface TextProps {
+  children: ReactNode;
+}
+
+const DescriptionLabel = ({ children }: TextProps) => {
+  const componentClassNames = {
+    label: classNames("lg:max-xl:text-base", "max-md:text-sm", "max-sm:text-xs"),
+  };
+
+  return <TextLabel className={componentClassNames.label}>{children}</TextLabel>;
+};
+
+const DescriptionParagraph = ({ children }: TextProps) => {
+  const componentClassNames = {
+    paragraph: classNames("lg:max-xl:text-xl", "max-md:text-lg", "max-sm:text-base"),
+  };
+
+  return <TextParagraph className={componentClassNames.paragraph}>{children}</TextParagraph>;
+};
 
 const DungeonGame = () => {
   return (
@@ -37,21 +58,21 @@ const DungeonGame = () => {
       video={DungeonGameVideo}
       loadImage={DungeonGameLoad}
       header="Dungeon game"
-      className="pt-0"
+      className="!pt-0"
     >
-      <TextLabel>Description:</TextLabel>
-      <TextParagraph>
+      <DescriptionLabel>Description:</DescriptionLabel>
+      <DescriptionParagraph>
         This game for simple studing programming. The meaning of the game is to move the character
         around the level, collect coins and bypass obstacles by writing code. The project has a
         level constructor, which helps the user to create a trial at his own discretion.
-      </TextParagraph>
-      <TextLabel>Stack:</TextLabel>
+      </DescriptionParagraph>
+      <DescriptionLabel>Stack:</DescriptionLabel>
       <ProjectIconsList>
         <JSIcon size="2xl" title="JavaScript" />
         <ReactIcon size="2xl" title="React" />
         <ImageIcon src={KonvaIcon} title="Konva" />
       </ProjectIconsList>
-      <TextLabel>Links:</TextLabel>
+      <DescriptionLabel>Links:</DescriptionLabel>
       <ProjectIconsList>
         <LinkIcon href="https://github.com/DRMus/Dungeon-game/" icon={faGithub} />
         <LinkIcon href="https://drmus.github.io/Dungeon-game/" icon={faGlobe} />
@@ -63,17 +84,17 @@ const DungeonGame = () => {
 const FileManager = () => {
   return (
     <ProjectSection video={FileManagerVideo} loadImage={FileManagerLoad} header="File Manager">
-      <TextLabel>Description:</TextLabel>
-      <TextParagraph>
+      <DescriptionLabel>Description:</DescriptionLabel>
+      <DescriptionParagraph>
         This project was created to convert the metadata of a selected files or folder to JSON
         format.
-      </TextParagraph>
-      <TextLabel>Stack:</TextLabel>
+      </DescriptionParagraph>
+      <DescriptionLabel>Stack:</DescriptionLabel>
       <ProjectIconsList>
         <JSIcon size="2xl" title="JavaScript" />
         <ReactIcon size="2xl" title="React" />
       </ProjectIconsList>
-      <TextLabel>Links:</TextLabel>
+      <DescriptionLabel>Links:</DescriptionLabel>
       <ProjectIconsList>
         <LinkIcon href="https://github.com/DRMus/file-manager/" icon={faGithub} />
         <LinkIcon href="https://drmus.github.io/file-manager/" icon={faGlobe} />
@@ -89,20 +110,20 @@ const AutomatedPlaceOfTheCurator = () => {
       loadImage={AutomatedPlaceOfTheCuratorLoad}
       header="Automated place of the curator"
     >
-      <TextLabel>Description:</TextLabel>
-      <TextParagraph>
+      <DescriptionLabel>Description:</DescriptionLabel>
+      <DescriptionParagraph>
         The project makes it possible to finance the work of the curator of a group of students at
         the university. This desktop application is a curator report template with data entry
         fields. It is also possible to upload an .xlsx file with curators, groups and students of
         these groups.
-      </TextParagraph>
-      <TextLabel>Stack:</TextLabel>
+      </DescriptionParagraph>
+      <DescriptionLabel>Stack:</DescriptionLabel>
       <ProjectIconsList>
         <JSIcon size="2xl" title="JavaScript" />
         <ReactIcon size="2xl" title="React" />
         <ImageIcon src={ElectronIcon} title="Electron" />
       </ProjectIconsList>
-      <TextLabel>Links:</TextLabel>
+      <DescriptionLabel>Links:</DescriptionLabel>
       <ProjectIconsList>
         <LinkIcon href="https://github.com/DRMus/docx-templater/" icon={faGithub} />
       </ProjectIconsList>
@@ -113,19 +134,19 @@ const AutomatedPlaceOfTheCurator = () => {
 const BirdShop = () => {
   return (
     <ProjectSection video={BirdShopVideo} loadImage={BirdShopLoad} header="Bird shop">
-      <TextLabel>Description:</TextLabel>
-      <TextParagraph>
+      <DescriptionLabel>Description:</DescriptionLabel>
+      <DescriptionParagraph>
         Simple online store with backend on C# and ASP.NET Core. Shop have a cart, user profile and
         his orders, catalog of products.
-      </TextParagraph>
-      <TextLabel>Stack:</TextLabel>
+      </DescriptionParagraph>
+      <DescriptionLabel>Stack:</DescriptionLabel>
       <ProjectIconsList>
         <JSIcon size="2xl" title="JavaScript" />
         <ReactIcon size="2xl" title="React" />
         <ImageIcon src={ReduxIcon} title="Redux" />
         <ImageIcon src={CIcon} title="C#" />
       </ProjectIconsList>
-      <TextLabel>Links:</TextLabel>
+      <DescriptionLabel>Links:</DescriptionLabel>
       <ProjectIconsList>
         <LinkIcon href="https://github.com/DRMus/bird_shop/" icon={faGithub} />
       </ProjectIconsList>

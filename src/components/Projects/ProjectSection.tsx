@@ -59,30 +59,54 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
       getVideo(video);
     }
   }, [worker]);
+
+  const componentClassNames = {
+    section: classNames(
+      "group project-animate transition-all w-full py-24 flex flex-col",
+      "max-xl:py-20",
+      "max-md:py-12",
+      className
+    ),
+    header: classNames(
+      "mb-6",
+      "lg:max-xl:text-3xl",
+      "max-lg:text-center max-lg:text-5xl",
+      "max-md:text-4xl",
+      "max-sm:text-2xl"
+    ),
+    description: classNames("flex justify-between gap-x-6 items-center", "max-lg:flex-col-reverse"),
+    descriptionText: classNames(
+      "w-[28rem]",
+      "max-lg:flex max-lg:flex-col max-lg:items-center max-lg:text-center max-lg:w-[70%]",
+      "max-md:w-[80%]",
+      "max-sm:w-[100%]"
+    ),
+    previewSection: classNames(
+      "img relative w-[650px] min-h-[328px]",
+      "lg:max-xl:w-[600px] lg:max-xl:min-h-[278px]",
+      "max-lg:my-10",
+      "max-md:w-[550px] max-md:min-h-[228px]",
+      "max-sm:w-[300px] max-sm:min-h-[128px] max-sm:my-4"
+    ),
+    image: classNames("w-full h-full object-contain rounded-lg"),
+  };
   return (
-    <div
-      data-projectscrollanimate={projectKey}
-      className={classNames(
-        "group project-animate transition-all w-full py-24 flex flex-col",
-        className
-      )}
-      {...props}
-    >
-      <TextHeader className="mb-6">{header}</TextHeader>
-      <div className="flex justify-between items-center">
-        <div className="w-[28rem]">{children}</div>
-        <div className="img relative w-[650px] min-h-[328px]">
+    <div data-projectscrollanimate={projectKey} className={componentClassNames.section} {...props}>
+      <TextHeader className={componentClassNames.header}>{header}</TextHeader>
+      <div className={componentClassNames.description}>
+        <div className={componentClassNames.descriptionText}>{children}</div>
+        <div className={componentClassNames.previewSection}>
           {projectVideo ? (
             <video
               ref={videoRef}
               src={projectVideo}
-              className=" w-full h-full object-contain rounded-lg"
+              className={componentClassNames.image}
               autoPlay
               muted
               loop
             />
           ) : (
-            <img src={loadImage} className=" w-full h-full object-contain rounded-lg" />
+            <img src={loadImage} className={componentClassNames.image} />
           )}
         </div>
       </div>
