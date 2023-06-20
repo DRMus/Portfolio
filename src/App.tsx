@@ -26,7 +26,7 @@ const router = createBrowserRouter(
       ],
     },
   ],
-  { basename: "/" }
+  { basename: import.meta.env.DEV ? "/" : "/Portfolio" }
 );
 
 function App() {
