@@ -26,7 +26,7 @@ const router = createHashRouter(
       ],
     },
   ],
-  { basename: import.meta.env.DEV ? "/" : "/Portfolio" }
+  
 );
 
 function App() {
