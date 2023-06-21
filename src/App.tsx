@@ -1,11 +1,11 @@
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import "./App.scss";
 import AboutView from "./components/About/AboutView";
 import MainPage from "./components/MainPage";
 import ProjectsView from "./components/Projects/ProjectsView";
 import ContactsView from "./components/Contacts/ContactsView";
 
-const router = createBrowserRouter(
+const router = createHashRouter(
   [
     {
       path: "/",
