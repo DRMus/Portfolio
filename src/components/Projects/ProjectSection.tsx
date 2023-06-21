@@ -18,13 +18,13 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const projectKey = useMemo<number>(() => getProjectKey(), []);
-  const worker = useMemo(
-    () => new Worker(new URL("../../utils/blobToBase64Worker.ts", import.meta.url)),
-    []
-  );
+  // const worker = useMemo(
+  //   () => new Worker(new URL("../../utils/blobToBase64Worker.ts", import.meta.url)),
+  //   []
+  // );
 
   const changeVideoVisibility = (state: boolean) => {
-    if (!videoRef.current) {
+    if (!videoRef.current || !videoRef.current.src.includes(".mp4")) {
       return;
     }
     videoRef.current.click();
@@ -37,20 +37,22 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
     }
   };
 
-  const getVideo = async (videoUrl: string) => {
-    fetch(videoUrl || "")
-      .then((res) => res.blob())
-      .then((res) => {
-        if (window.Worker) {
-          worker.onmessage = (message) => {          
-            setProjectVideo(message.data);
-            worker.terminate();
-          };
+  const getVideo = (videoUrl: string) => {
+    import(videoUrl).then((result) => setProjectVideo(result.default));
 
-          worker.postMessage(res);
-        }
-      })
-      .catch((err) => console.log(err));
+    // fetch(videoUrl || "")
+    //   .then((res) => res.blob())
+    //   .then((res) => {
+    //     if (window.Worker) {
+    //       worker.onmessage = (message) => {
+    //         setProjectVideo(message.data);
+    //         worker.terminate();
+    //       };
+
+    //       worker.postMessage(res);
+    //     }
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   useEffect(() => {
@@ -58,7 +60,7 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
     if (video) {
       getVideo(video);
     }
-  }, [worker]);
+  }, []);
 
   const componentClassNames = {
     section: classNames(
@@ -97,25 +99,15 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
       <div className={componentClassNames.description}>
         <div className={componentClassNames.descriptionText}>{children}</div>
         <div className={componentClassNames.previewSection}>
-          {projectVideo ? (
-            <video
-              ref={videoRef}
-              src={projectVideo}
-              className={componentClassNames.image}
-              autoPlay
-              muted
-              loop
-            />
-          ) : (
-            <img src={loadImage} className={componentClassNames.image} />
-          )}
           <video
-              src={video}
-              className={componentClassNames.image}
-              autoPlay
-              muted
-              loop
-            />
+            ref={videoRef}
+            src={projectVideo}
+            className={componentClassNames.image}
+            autoPlay
+            muted
+            loop
+            poster={loadImage}
+          />
         </div>
       </div>
     </div>
