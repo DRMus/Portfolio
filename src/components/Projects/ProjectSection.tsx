@@ -43,6 +43,8 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
       .then((res) => {
         if (window.Worker) {
           worker.onmessage = (message) => {
+            console.log(message.data);
+            
             setProjectVideo(message.data);
             worker.terminate();
           };
