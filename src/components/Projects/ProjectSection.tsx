@@ -42,9 +42,7 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
       .then((res) => res.blob())
       .then((res) => {
         if (window.Worker) {
-          worker.onmessage = (message) => {
-            console.log(message.data);
-            
+          worker.onmessage = (message) => {          
             setProjectVideo(message.data);
             worker.terminate();
           };
@@ -66,6 +64,7 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
     section: classNames(
       "group project-animate transition-all w-full py-24 flex flex-col",
       "max-xl:py-20",
+      "max-lg:py-16",
       "max-md:py-12",
       className
     ),
@@ -81,13 +80,13 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
       "w-[28rem]",
       "max-lg:flex max-lg:flex-col max-lg:items-center max-lg:text-center max-lg:w-[70%]",
       "max-md:w-[80%]",
-      "max-sm:w-[100%]"
+      "max-sm:w-[90%]"
     ),
     previewSection: classNames(
       "img relative w-[650px] min-h-[328px]",
-      "lg:max-xl:w-[600px] lg:max-xl:min-h-[278px]",
-      "max-lg:my-10",
-      "max-md:w-[550px] max-md:min-h-[228px]",
+      "lg:max-xl:w-[500px] lg:max-xl:min-h-[278px]",
+      "max-lg:w-[530px] max-lg:min-h-[128px] max-lg:my-10",
+      "max-md:w-[450px] max-md:min-h-[128px]",
       "max-sm:w-[300px] max-sm:min-h-[128px] max-sm:my-4"
     ),
     image: classNames("w-full h-full object-contain rounded-lg"),

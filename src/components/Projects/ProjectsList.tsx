@@ -38,7 +38,7 @@ interface TextProps {
 
 const DescriptionLabel = ({ children }: TextProps) => {
   const componentClassNames = {
-    label: classNames("lg:max-xl:text-base", "max-md:text-sm", "max-sm:text-xs"),
+    label: classNames("max-xl:text-base", "max-md:text-sm", "max-sm:text-xs"),
   };
 
   return <TextLabel className={componentClassNames.label}>{children}</TextLabel>;
@@ -46,7 +46,7 @@ const DescriptionLabel = ({ children }: TextProps) => {
 
 const DescriptionParagraph = ({ children }: TextProps) => {
   const componentClassNames = {
-    paragraph: classNames("lg:max-xl:text-xl", "max-md:text-lg", "max-sm:text-base"),
+    paragraph: classNames("max-xl:text-xl", "max-md:text-lg", "max-sm:text-base"),
   };
 
   return <TextParagraph className={componentClassNames.paragraph}>{children}</TextParagraph>;
