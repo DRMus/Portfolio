@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useEffect, useMemo, useState, useContext, useRef } from "react";
+import { FC, HTMLAttributes, useEffect, useMemo, useContext, useRef } from "react";
 
 import classNames from "classnames";
 import TextHeader from "../templates/TextHeader";
@@ -13,15 +13,9 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 const ProjectSection: FC<Props> = ({ children, className, video, loadImage, header, ...props }) => {
   const { addVideoVisibilityCallback, getProjectKey } = useContext(ProjectContextValues);
 
-  const [projectVideo, setProjectVideo] = useState<string>("");
-
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const projectKey = useMemo<number>(() => getProjectKey(), []);
-  // const worker = useMemo(
-  //   () => new Worker(new URL("../../utils/blobToBase64Worker.ts", import.meta.url)),
-  //   []
-  // );
 
   const changeVideoVisibility = (state: boolean) => {
     if (!videoRef.current || !videoRef.current.src.includes(".mp4")) {
@@ -37,29 +31,8 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
     }
   };
 
-  const getVideo = (videoUrl: string) => {
-    import(videoUrl).then((result) => setProjectVideo(result.default));
-
-    // fetch(videoUrl || "")
-    //   .then((res) => res.blob())
-    //   .then((res) => {
-    //     if (window.Worker) {
-    //       worker.onmessage = (message) => {
-    //         setProjectVideo(message.data);
-    //         worker.terminate();
-    //       };
-
-    //       worker.postMessage(res);
-    //     }
-    //   })
-    //   .catch((err) => console.log(err));
-  };
-
   useEffect(() => {
     addVideoVisibilityCallback(changeVideoVisibility);
-    if (video) {
-      getVideo(video);
-    }
   }, []);
 
   const componentClassNames = {
@@ -101,7 +74,7 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
         <div className={componentClassNames.previewSection}>
           <video
             ref={videoRef}
-            src={projectVideo}
+            src={video}
             className={componentClassNames.image}
             autoPlay
             muted
