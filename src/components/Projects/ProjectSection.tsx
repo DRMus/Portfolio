@@ -37,7 +37,7 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
     }
   };
 
-  const getVideo = (videoUrl: string) => {
+  const getVideo = async (videoUrl: string) => {
     fetch(videoUrl || "")
       .then((res) => res.blob())
       .then((res) => {
@@ -109,6 +109,13 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
           ) : (
             <img src={loadImage} className={componentClassNames.image} />
           )}
+          <video
+              src={video}
+              className={componentClassNames.image}
+              autoPlay
+              muted
+              loop
+            />
         </div>
       </div>
     </div>
