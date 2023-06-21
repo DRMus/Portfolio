@@ -24,9 +24,9 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
     videoRef.current.click();
 
     if (state) {
-      videoRef.current.play();
+      videoRef.current.paused && videoRef.current.play();
     } else {
-      videoRef.current.pause();
+      !videoRef.current.paused && videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
   };
