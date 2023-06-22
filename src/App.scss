@@ -42,6 +42,17 @@ body {
   }
 }
 
+@media (max-width: 640px) {
+  .scroll-config {
+    overscroll-behavior: contain;
+  
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+  }
+}
+
 .scroll-disabled::-webkit-scrollbar {
   display: none;
 }

@@ -37,7 +37,7 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
 
   const componentClassNames = {
     section: classNames(
-      "group project-animate transition-all w-full py-24 flex flex-col",
+      "group project-animate transition-all duration-[400ms] w-full py-24 flex flex-col",
       "max-xl:py-20",
       "max-lg:py-16",
       "max-md:py-12",

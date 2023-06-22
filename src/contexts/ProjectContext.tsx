@@ -34,7 +34,7 @@ export const ProjectContextProvider: FC<Props> = ({ children }) => {
     changes: IntersectionObserverEntry,
     elementIndex: number
   ) => {
-    if (changes.intersectionRatio < 0.9) {
+    if (changes.intersectionRatio < 0.6) {
       element.style.opacity = `${changes.intersectionRatio}`;
       element.style.filter = `blur(${5 - changes.intersectionRatio * 5}px)`;
     } else {

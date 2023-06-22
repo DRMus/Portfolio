@@ -157,7 +157,7 @@ const BirdShop = () => {
 const ProjectsList = () => {
   const { addObserverAction } = useContext(ProjectContextValues);
   useLayoutEffect(() => {
-    const observer = intersectionObserver("projectscrollanimate", addObserverAction);
+    const observer = intersectionObserver("projectscrollanimate", addObserverAction, [0.1, 0.6]);
 
     return () => {
       observer.disconnect();

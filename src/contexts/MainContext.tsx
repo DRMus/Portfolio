@@ -4,10 +4,12 @@ import {
   RefObject,
   createContext,
   useEffect,
+  useMemo,
   useRef,
   useState,
 } from "react";
 import { useLocation } from "react-router-dom";
+import { mobileCheck } from "../utils/mobileCheck";
 
 interface Props {
   children: ReactNode;
@@ -18,6 +20,7 @@ interface MainContext {
   isScrollAnimationPlaying: boolean;
   isPageChanging: boolean;
   isParticlesDone: boolean;
+  isMobile: boolean;
   contentBlockOldHeight: RefObject<number>;
   mainBlockRef: RefObject<HTMLElement>;
   showSelectedPage: (state: boolean) => void;
@@ -32,6 +35,7 @@ export const MainContextValues = createContext<MainContext>({
   isScrollAnimationPlaying: false,
   isPageChanging: false,
   isParticlesDone: false,
+  isMobile: false,
   contentBlockOldHeight: { current: -1 },
   mainBlockRef: { current: null },
   showSelectedPage: function (): void {
@@ -48,7 +52,7 @@ export const MainContextValues = createContext<MainContext>({
   },
   changeIsParticlesDone: function (): void {
     throw new Error("Function not implemented.");
-  }
+  },
 });
 
 export const MainContextProvider: FC<Props> = ({ children }) => {
@@ -56,6 +60,7 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
   const [isScrollAnimationPlaying, setIsScrollAnimationPlaying] = useState<boolean>(false);
   const [isPageChanging, setIsPageChanging] = useState<boolean>(false);
   const [isParticlesDone, setIsParticlesDone] = useState<boolean>(false);
+  const isMobile = useMemo<boolean>(() => mobileCheck(), []);
 
   const contentBlockOldHeight = useRef<number>(-1);
   const mainBlockRef = useRef<HTMLElement>(null);
@@ -76,7 +81,7 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
 
   const changeIsParticlesDone = (state: boolean) => {
     setIsParticlesDone(state);
-  }
+  };
 
   const setContentBlockOldHeight = (ref: RefObject<HTMLDivElement> | undefined) => {
     if (!ref) {
@@ -102,6 +107,7 @@ export const MainContextProvider: FC<Props> = ({ children }) => {
     isScrollAnimationPlaying,
     isPageChanging,
     isParticlesDone,
+    isMobile,
     contentBlockOldHeight,
     mainBlockRef,
     showSelectedPage,
