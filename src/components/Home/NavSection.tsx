@@ -31,7 +31,7 @@ const NavSection: FC<Props> = ({ children, className, page, onClick, ...props })
     >
       <BluredBlock
         className={classNames(
-          "hover:shadow-portfolio-purple hover:border-portfolio-purple/50 hover:bg-portfolio-purple/20",
+          "lg:hover:shadow-portfolio-purple lg:hover:border-portfolio-purple/50 lg:hover:bg-portfolio-purple/20",
           "max-sm:text",
           className
         )}
