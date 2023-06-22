@@ -167,11 +167,11 @@ const ProjectsList = () => {
     <div className="text w-full">
       <DungeonGame />
       <DivideLine />
-      <FileManager />
+      <BirdShop />
       <DivideLine />
       <AutomatedPlaceOfTheCurator />
       <DivideLine />
-      <BirdShop />
+      <FileManager />
     </div>
   );
 };

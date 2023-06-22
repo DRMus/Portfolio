@@ -25,17 +25,10 @@ function onEntry(
 export function intersectionObserver(
   queryData: string,
   addAction: TObserverAction | string,
-  threshold?: boolean | number[]
+  threshold?: number[]
 ): IntersectionObserver {
   const elements = document.querySelectorAll(`[data-${queryData}]`);
-
-  let currentThreshold: boolean | undefined | number[];
-  if (typeof threshold === "boolean" || typeof threshold === "undefined") {
-    currentThreshold = threshold ? [0, 0.5] : undefined
-  } else {
-    currentThreshold = threshold
-  }
-
+  const currentThreshold: number[] = threshold || [0.1, 1];
   const observer = new IntersectionObserver((entries) => onEntry(entries, queryData, addAction), {
     threshold: currentThreshold,
   });
