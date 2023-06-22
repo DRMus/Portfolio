@@ -1,4 +1,4 @@
-import { useCallback, useContext } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { RecursivePartial, IOptions, Engine } from "tsparticles-engine";
@@ -114,7 +114,9 @@ const options: RecursivePartial<IOptions> = {
 
 const BgParticles = () => {
   const { isWelcomeAnimationPlaying } = useContext(WelcomeAnimationContextValues);
-  const { changeIsParticlesDone } = useContext(MainContextValues);
+  const { changeIsParticlesDone, isMobile } = useContext(MainContextValues);
+
+  const [particlesOptions, setParticlesOptions] = useState<RecursivePartial<IOptions>>(options);
 
   const particlesInit = useCallback(async (engine: Engine) => {
     await loadFull(engine);
@@ -123,6 +125,16 @@ const BgParticles = () => {
   const particlesLoaded = useCallback(async () => {
     changeIsParticlesDone(true);
   }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      let mobileOptions = options;
+      if (mobileOptions.particles && mobileOptions.particles.number) {
+        mobileOptions.particles.number.value = 170;
+        setParticlesOptions(mobileOptions);
+      }
+    }
+  }, []);
   return (
     <div
       className={classNames("w-full h-full fixed z-[-1] transition-opacity duration-500", {
@@ -130,7 +142,12 @@ const BgParticles = () => {
         "opacity-30": !isWelcomeAnimationPlaying,
       })}
     >
-      <Particles id="tsparticles" init={particlesInit} loaded={particlesLoaded} options={options} />
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        loaded={particlesLoaded}
+        options={particlesOptions}
+      />
     </div>
   );
 };
