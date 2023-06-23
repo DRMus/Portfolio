@@ -37,6 +37,7 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
     helloSection: "w-full flex items-center grow justify-center",
     navSection: classNames(
       "transition-all duration-500 p-4 overflow-hidden h-1/4",
+      "max-md:h-auto",
       "sm:max-md:min-h-3/6",
       "xs:max-sm:min-h-[45%]",
       "max-xs:min-h-[40%]",
