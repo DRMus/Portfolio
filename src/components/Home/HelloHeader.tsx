@@ -96,7 +96,7 @@ const HelloHeader = () => {
         "text-6xl transition-opacity duration-500": !isWelcomeAnimationPlaying,
       }
     ),
-    headerAnimate: classNames("max-xs:text-3xl max-xs:!py-1"),
+    headerAnimate: classNames("max-sm:text-3xl max-sm:!py-1"),
     headerSpan: classNames(
       "text-portfolio-white",
       "sm:max-md:block sm:max-md:my-1.5",
