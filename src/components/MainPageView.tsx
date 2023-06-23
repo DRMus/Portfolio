@@ -131,6 +131,7 @@ const MainPageView = () => {
     if (location.state === LOCATION_STATES.BY_NAV_BAR) {
       const callbackAfter = () => {
         setIsHomePageVisiable(false);
+        viewBlockRef.current?.scrollIntoView();
       };
       scrolltoElement(viewBlockRef, callbackAfter);
     }
