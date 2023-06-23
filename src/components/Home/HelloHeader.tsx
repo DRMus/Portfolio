@@ -114,7 +114,7 @@ const HelloHeader = () => {
           currentText.text
         ) : (
           <>
-            Hello, that's <span className={componentClassNames.headerSpan}>Web Developer</span> blog
+            Hi, that's <span className={componentClassNames.headerSpan}>Web Developer</span> blog
           </>
         )}
       </TextHeader>

@@ -24,11 +24,13 @@ function onEntry(
 
 export function intersectionObserver(
   queryData: string,
-  addAction: TObserverAction | string
+  addAction: TObserverAction | string,
+  threshold?: number[]
 ): IntersectionObserver {
   const elements = document.querySelectorAll(`[data-${queryData}]`);
+  const currentThreshold: number[] = threshold || [0.1, 1];
   const observer = new IntersectionObserver((entries) => onEntry(entries, queryData, addAction), {
-    threshold: [0, 0.2, 0.4, 0.6, 0.8, 0.9, 0.95, 1.0],
+    threshold: currentThreshold,
   });
   for (let elem of elements) {
     observer.observe(elem);

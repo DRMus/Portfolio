@@ -88,8 +88,6 @@ const MainPageView = () => {
     // (Condition "> 1000" is need, because scrollTop have a bug if value more then 1000)
     let requiredScrollPosition = scrollTop > 1000 ? scrollTop : scrollTop + (newHeight - oldHeight);
 
-    // console.log(oldHeight, newHeight, scrollTop, mainBlockRef);
-
     mainBlockRef.current.scrollTo(0, requiredScrollPosition);
 
     const callbackAfter = () => {
