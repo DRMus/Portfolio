@@ -36,17 +36,18 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
     pageSection: "COMP_HomeView flex flex-col h-portfolio-block w-full !py-16",
     helloSection: "w-full flex items-center grow justify-center",
     navSection: classNames(
-      "transition-all duration-500 p-4 overflow-hidden h-1/4",
-      "sm:max-md:h-4/6",
-      "xs:max-sm:h-[60%]",
-      "max-xs:h-[55%]",
+      "transition-all duration-500 p-4 overflow-hidden min-h-1/4",
+      "sm:max-md:min-h-3/6",
+      "xs:max-sm:min-h-[45%]",
+      "max-xs:min-h-[40%]",
       {
-        showNavBar: navigationType === "POP",
+        showNavBar: navigationType === "POP" && document.body.clientWidth > 640,
+        showNavBarForMobile: navigationType === "POP" && document.body.clientWidth < 640
       }
     ),
     navBar: classNames(
-      "flex items-center justify-between h-full w-full",
-      "md:space-x-8",
+      "flex items-center justify-around h-full w-full",
+      "md:gap-x-12",
       "sm:max-md:flex-col sm:max-md:space-y-8 sm:max-md:px-16",
       "xs:max-sm:flex-col xs:max-sm:space-y-6 xs:max-sm:px-4",
       "max-xs:flex-col max-xs:space-y-4 max-xs:px-2",

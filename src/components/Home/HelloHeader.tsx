@@ -101,10 +101,10 @@ const HelloHeader = () => {
       "max-sm:block max-sm:my-1.5"
     ),
     skipSpan: classNames(
-      "absolute bottom-6 right-6 text-portfolio-white text-xl transition-colors cursor-pointer hover:text-portfolio-purple-light"
+      "absolute bottom-6 right-6 text-portfolio-white text-xl transition-colors cursor-pointer lg:hover:text-portfolio-purple-light"
     ),
     replaySpan:
-      "absolute bottom-4 right-4 p-2 rounded-full text-portfolio-white/30 transition-colors cursor-pointer hover:text-portfolio-purple",
+      "absolute bottom-4 right-4 p-2 rounded-full text-portfolio-white/30 transition-colors cursor-pointer lg:hover:text-portfolio-purple",
   };
 
   return (

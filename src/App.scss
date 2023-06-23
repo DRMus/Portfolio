@@ -42,6 +42,12 @@ body {
   }
 }
 
+@media (max-width: 640px) {
+  .scroll-config::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .scroll-disabled::-webkit-scrollbar {
   display: none;
 }

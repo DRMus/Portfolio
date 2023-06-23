@@ -23,28 +23,28 @@ const ContactsView = () => {
           <ContactBlock
             icon={faVk}
             className="vk-icon-bg"
-            iconClassName="group-hover:text-portfolio-vk max-md:text-portfolio-vk"
+            iconClassName="lg:group-hover:text-portfolio-vk max-md:text-portfolio-vk"
             href="https://vk.com/flying_pig73/"
           />
           <ContactBlock
             icon={faTelegram}
             className="telegram-icon-bg"
-            iconClassName="group-hover:text-portfolio-telegram max-md:text-portfolio-telegram"
+            iconClassName="lg:group-hover:text-portfolio-telegram max-md:text-portfolio-telegram"
             href="https://t.me/Smochello/"
             title="@Smochello"
           />
           <ContactBlock
             icon={faGithub}
-            className="hover:bg-slate-200/20 hover:border-slate-200/50 github-icon-bg max-md:bg-slate-200/20 max-md:border-slate-200/50"
-            iconClassName="group-hover:text-slate-200 max-md:text-slate-200"
+            className="lg:hover:bg-slate-200/20 lg:hover:border-slate-200/50 github-icon-bg max-md:bg-slate-200/20 max-md:border-slate-200/50"
+            iconClassName="lg:group-hover:text-slate-200 max-md:text-slate-200"
             href="https://github.com/DRMus/"
             title="DRMus"
           />
           <ContactBlock
             type="clipboard"
             icon={faEnvelope}
-            className="hover:bg-yellow-500/20 hover:border-yellow-500/50 email-icon-bg max-md:bg-yellow-500/20 max-md:border-yellow-500/50"
-            iconClassName="group-hover:text-yellow-500 max-md:text-yellow-500"
+            className="lg:hover:bg-yellow-500/20 lg:hover:border-yellow-500/50 email-icon-bg max-md:bg-yellow-500/20 max-md:border-yellow-500/50"
+            iconClassName="lg:group-hover:text-yellow-500 max-md:text-yellow-500"
             title="ditrom7306@mail.ru"
           />
         </div>

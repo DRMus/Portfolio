@@ -92,7 +92,7 @@ const AudioButton: FC<Props> = (props) => {
     >
       <FontAwesomeIcon
         icon={isMuted ? faVolumeMute : faVolumeHigh}
-        className="text-portfolio-white/40 transition-colors duration-300 group-hover:text-portfolio-purple"
+        className="text-portfolio-white/40 transition-colors duration-300 lg:group-hover:text-portfolio-purple"
         size={props.size}
       />
     </HoverIsland>

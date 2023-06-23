@@ -18,7 +18,7 @@ const HeaderView: FC<Props> = (props) => {
     ),
     icon: classNames(
       "text-portfolio-white/30 justify-center transition-all duration-300 text-2xl",
-      "group-hover:text-portfolio-purple",
+      "lg:group-hover:text-portfolio-purple",
       "max-md:text-xl",
       "max-sm:text-lg",
       styles.showHeader

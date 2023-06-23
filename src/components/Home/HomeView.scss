@@ -2,6 +2,37 @@
   animation: showNav 500ms ease-in-out;
 }
 
+.showNavBarForMobile {
+  animation: var(--animation-show-opacity);
+}
+
+.navbarBorderGradient {
+  --border-width: 3px;
+  &::after {
+    position: absolute;
+    content: "";
+    top: calc(-1 * var(--border-width));
+    left: calc(-1 * var(--border-width));
+    z-index: -1;
+    width: calc(100% + var(--border-width) * 2);
+    height: calc(100% + var(--border-width) * 2);
+    background: linear-gradient(319deg, #663dff 0%, #aa00ff 37%, #cc4499 100%);
+    background-size: 300% 300%;
+    background-position: 0 50%;
+    border-radius: calc(2 * var(--border-width));
+    animation: moveGradient 2s alternate infinite;
+  }
+  .navChild {
+    border-radius: var(--border-width);
+  }
+}
+
+@keyframes moveGradient {
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
 @keyframes showNav {
   from {
     height: 0;

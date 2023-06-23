@@ -4,7 +4,6 @@ import { LOCATION_STATES } from "../../utils/constants";
 import { MainContextValues } from "../../contexts/MainContext";
 
 import "./HomeView.scss";
-import BluredBlock from "../templates/BluredBlock";
 import classNames from "classnames";
 
 interface Props extends HTMLAttributes<HTMLElement> {
@@ -22,23 +21,26 @@ const NavSection: FC<Props> = ({ children, className, page, onClick, ...props })
     onClick && onClick(event);
   };
 
+  const componentClassNames = {
+    link: classNames("group relative w-full navbarBorderGradient"),
+    child: classNames(
+      "navChild bg-portfolio-bg py-3.5 transition-colors duration-[350ms]",
+      "lg:hover:bg-portfolio-bg/90",
+      "max-md:py-5",
+      className
+    ),
+  };
+
   return (
     <Link
       to={page}
       state={LOCATION_STATES.BY_NAV_BAR}
-      className="h-full w-full grow"
+      className={componentClassNames.link}
       onClick={handlerMouseClick}
     >
-      <BluredBlock
-        className={classNames(
-          "hover:shadow-portfolio-purple hover:border-portfolio-purple/50 hover:bg-portfolio-purple/20",
-          "max-sm:text",
-          className
-        )}
-        {...props}
-      >
+      <div className={componentClassNames.child} {...props}>
         {children}
-      </BluredBlock>
+      </div>
     </Link>
   );
 };
