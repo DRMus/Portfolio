@@ -2,6 +2,7 @@ import { useContext, useEffect, useMemo, useRef, useState } from "react";
 import TextHeader from "../templates/TextHeader";
 
 import "./HelloHeader.scss";
+import "./HomeView.scss";
 import classNames from "classnames";
 import { WelcomeAnimationContextValues } from "../../contexts/WelcomeAnimationContext";
 import { faArrowRotateLeft } from "@fortawesome/free-solid-svg-icons";
@@ -95,6 +96,7 @@ const HelloHeader = () => {
         "text-6xl transition-opacity duration-500": !isWelcomeAnimationPlaying,
       }
     ),
+    headerAnimate: classNames("max-xs:text-3xl max-xs:!py-1"),
     headerSpan: classNames(
       "text-portfolio-white",
       "sm:max-md:block sm:max-md:my-1.5",
@@ -109,15 +111,23 @@ const HelloHeader = () => {
 
   return (
     <div>
-      <TextHeader className={componentClassNames.header} style={{ animation: headerAnimation }}>
-        {isWelcomeAnimationPlaying ? (
-          currentText.text
-        ) : (
-          <>
-            Hi, that's <span className={componentClassNames.headerSpan}>Web Developer</span> blog
-          </>
-        )}
-      </TextHeader>
+      {isWelcomeAnimationPlaying ? (
+        <TextHeader
+          key={"animation"}
+          className={componentClassNames.header + " " + componentClassNames.headerAnimate}
+          style={{ animation: headerAnimation }}
+        >
+          {currentText.text}
+        </TextHeader>
+      ) : (
+        <TextHeader
+          key={"static"}
+          className={componentClassNames.header + " showNavBarForMobile"}
+          style={{ animation: headerAnimation }}
+        >
+          Hi, that's <span className={componentClassNames.headerSpan}>Web Developer</span> blog
+        </TextHeader>
+      )}
 
       {isWelcomeAnimationPlaying && (
         <span className={componentClassNames.skipSpan} onClick={() => stopWelcomeAnimation()}>
