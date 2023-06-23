@@ -176,7 +176,7 @@ const MainPageView = () => {
     <>
       {!isHomePageVisiable && <HeaderView goHome={showHomePage} />}
       <main className={componentClassNames.main} ref={mainBlockRef}>
-        <AudioButton classname="fixed top-4 right-4" size="lg"/>
+        {/* <AudioButton classname="fixed top-4 right-4" size="lg"/> */}
         <BgParticles />
         {!isWelcomeAnimationPlaying && <div className={componentClassNames.bgGradient}></div>}
 
