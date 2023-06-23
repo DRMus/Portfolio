@@ -36,7 +36,7 @@ const HomeView = forwardRef<HTMLElement>((_, ref) => {
     pageSection: "COMP_HomeView flex flex-col h-portfolio-block w-full !py-16",
     helloSection: "w-full flex items-center grow justify-center",
     navSection: classNames(
-      "transition-all duration-500 p-4 overflow-hidden min-h-1/4",
+      "transition-all duration-500 p-4 overflow-hidden h-1/4",
       "sm:max-md:min-h-3/6",
       "xs:max-sm:min-h-[45%]",
       "max-xs:min-h-[40%]",
