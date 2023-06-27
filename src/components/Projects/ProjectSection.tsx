@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes, useEffect, useMemo, useContext, useRef } from "react";
+import { FC, HTMLAttributes, useEffect, useMemo, useContext, useRef, useState } from "react";
 
 import classNames from "classnames";
 import TextHeader from "../templates/TextHeader";
@@ -12,6 +12,8 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 const ProjectSection: FC<Props> = ({ children, className, video, loadImage, header, ...props }) => {
   const { addVideoVisibilityCallback, getProjectKey } = useContext(ProjectContextValues);
+
+  const [isVideoLoaded, setIsVideoLoaded] = useState<boolean>(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -29,6 +31,10 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
       !videoRef.current.paused && videoRef.current.pause();
       videoRef.current.currentTime = 0;
     }
+  };
+
+  const onVideoLoaded = () => {
+    setIsVideoLoaded(true);
   };
 
   useEffect(() => {
@@ -64,7 +70,10 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
       "max-md:w-[450px] max-md:min-h-[128px]",
       "max-sm:w-[300px] max-sm:min-h-[128px] max-sm:my-4"
     ),
-    image: classNames("w-full h-full object-contain rounded-lg"),
+    image: classNames("w-full h-full rounded-lg", {
+      "object-fill": !isVideoLoaded,
+      "object-contain": isVideoLoaded,
+    }),
   };
   return (
     <div data-projectscrollanimate={projectKey} className={componentClassNames.section} {...props}>
@@ -80,6 +89,7 @@ const ProjectSection: FC<Props> = ({ children, className, video, loadImage, head
             muted
             loop
             poster={loadImage}
+            onLoadedData={onVideoLoaded}
           />
         </div>
       </div>
