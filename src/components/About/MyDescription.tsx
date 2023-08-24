@@ -53,6 +53,13 @@ const MyDescription = () => {
       "md:max-lg:flex md:max-lg:flex-col md:max-lg:gap-y-4",
       "sm:max-md:flex sm:max-md:flex-col sm:max-md:gap-y-4"
     ),
+    post: classNames(
+      "text-center !font-bold text-3xl mb-4",
+      "md:max-lg:text-4xl",
+      "sm:max-md:text-2xl",
+      "max-sm:text-3xl max-sm:mb-6"
+    ),
+    postFrontend: "text-portfolio-purple underline underline-offset-4 decoration-3",
   };
   return (
     <div className={componentClassNames.infoBlock}>
@@ -60,6 +67,9 @@ const MyDescription = () => {
         <img src={Photo} alt="" className="object-contain" />
       </div>
       <div className={componentClassNames.personInfoList}>
+        <TextParagraph className={componentClassNames.post}>
+          <span className={componentClassNames.postFrontend}>Frontend</span> developer
+        </TextParagraph>
         <DescriptionPersonLine label="Name:" paragraph="Muslimov Damir" />
         <DescriptionPersonLine label="Age:" paragraph={calculateAge("06.17.2002").toString()} />
         <DescriptionPersonLine label="Location:" paragraph="Russia, Ulyanovsk" />

@@ -45,7 +45,7 @@ const ContactsView = () => {
             icon={faEnvelope}
             className="lg:hover:bg-yellow-500/20 lg:hover:border-yellow-500/50 email-icon-bg max-md:bg-yellow-500/20 max-md:border-yellow-500/50"
             iconClassName="lg:group-hover:text-yellow-500 max-md:text-yellow-500"
-            title="ditrom7306@mail.ru"
+            title="damirmus.jobs@gmail.com"
           />
         </div>
       </div>

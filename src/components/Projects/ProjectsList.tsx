@@ -6,7 +6,7 @@ import TextParagraph from "../templates/TextParagraph";
 import TextLabel from "../templates/TextLabel";
 import DivideLine from "../templates/DivideLine";
 import LinkIcon from "../templates/LinkIcon";
-import ImageIcon from "../templates/ImageIcon";
+import ImageIcon from "../templates/Icons/ImageIcon";
 import { JSIcon, ReactIcon } from "../templates/Icons";
 
 import { ProjectContextValues } from "../../contexts/ProjectContext";
@@ -20,6 +20,7 @@ import KonvaIcon from "../../assets/Konva.png";
 import ElectronIcon from "../../assets/electron.ico";
 import ReduxIcon from "../../assets/redux.png";
 import CIcon from "../../assets/C.png";
+import TSIcon from "../../assets/ts.png";
 
 import DungeonGameVideo from "../../assets/dungeon_game.mp4";
 import FileManagerVideo from "../../assets/file_manager.mp4";
@@ -69,6 +70,7 @@ const DungeonGame = () => {
       <DescriptionLabel>Stack:</DescriptionLabel>
       <ProjectIconsList>
         <JSIcon size="2xl" title="JavaScript" />
+        <ImageIcon src={TSIcon} title="Typescript" />
         <ReactIcon size="2xl" title="React" />
         <ImageIcon src={KonvaIcon} title="Konva" />
       </ProjectIconsList>
@@ -92,6 +94,7 @@ const FileManager = () => {
       <DescriptionLabel>Stack:</DescriptionLabel>
       <ProjectIconsList>
         <JSIcon size="2xl" title="JavaScript" />
+        <ImageIcon src={TSIcon} title="Typescript" />
         <ReactIcon size="2xl" title="React" />
       </ProjectIconsList>
       <DescriptionLabel>Links:</DescriptionLabel>
@@ -120,6 +123,7 @@ const AutomatedPlaceOfTheCurator = () => {
       <DescriptionLabel>Stack:</DescriptionLabel>
       <ProjectIconsList>
         <JSIcon size="2xl" title="JavaScript" />
+        <ImageIcon src={TSIcon} title="Typescript" />
         <ReactIcon size="2xl" title="React" />
         <ImageIcon src={ElectronIcon} title="Electron" />
       </ProjectIconsList>
@@ -142,6 +146,7 @@ const BirdShop = () => {
       <DescriptionLabel>Stack:</DescriptionLabel>
       <ProjectIconsList>
         <JSIcon size="2xl" title="JavaScript" />
+        <ImageIcon src={TSIcon} title="Typescript" />
         <ReactIcon size="2xl" title="React" />
         <ImageIcon src={ReduxIcon} title="Redux" />
         <ImageIcon src={CIcon} title="C#" />

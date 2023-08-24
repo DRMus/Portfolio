@@ -1,6 +1,5 @@
 import { RefObject, useContext, useEffect, useLayoutEffect, useRef, useState } from "react";
 import HomeView from "./Home/HomeView";
-import styles from "./MainPageView.module.scss";
 import { MainContextValues } from "../contexts/MainContext";
 import { scrollEvents } from "../utils/scrollEvents";
 import classNames from "classnames";
@@ -11,6 +10,7 @@ import { LOCATION_STATES } from "../utils/constants";
 import BgParticles from "./MainFragments/BgParticles/BgParticles";
 import { WelcomeAnimationContextValues } from "../contexts/WelcomeAnimationContext";
 
+import styles from "./MainPageView.module.scss";
 
 function initialConditionIsHomePage(location: Location, navigationType: string): boolean {
   return location.pathname !== "/" && location.state === "byNavBar" && navigationType === "POP"

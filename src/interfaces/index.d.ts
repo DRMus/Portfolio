@@ -52,6 +52,7 @@ export interface ISkillCircleProps {
   name?: string;
   gradientColorStart?: string;
   gradientColorStop?: string;
+  gradientText?: boolean;
 }
 
 export type TObserverAction = (

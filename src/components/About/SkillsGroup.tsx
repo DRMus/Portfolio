@@ -9,21 +9,22 @@ const SkillsGroup = () => {
       <div className="flex flex-wrap gap-y-12 justify-around">
         <SkillCircle
           name="HTML"
-          percent={90}
+          percent={80}
           gradientColorStart="#883715"
           gradientColorStop="#f16529"
         />
         <SkillCircle
           name="CSS"
-          percent={80}
+          percent={70}
           gradientColorStart="#0070ba"
           gradientColorStop="#29a8e0"
         />
         <SkillCircle
-          name="JavaScript"
+          name="JS / TS"
           percent={50}
-          gradientColorStart="#836d00"
+          gradientColorStart="#0070ba"
           gradientColorStop="#ffd500"
+          gradientText
         />
         <SkillCircle
           name="React"
@@ -34,13 +35,13 @@ const SkillsGroup = () => {
 
         <SkillCircle
           name="C#"
-          percent={25}
+          percent={15}
           gradientColorStart="#7e22ce"
           gradientColorStop="#A456E7"
         />
         <SkillCircle
           name="Node.Js"
-          percent={25}
+          percent={15}
           gradientColorStart="#56861b"
           gradientColorStop="#83cd29"
         />

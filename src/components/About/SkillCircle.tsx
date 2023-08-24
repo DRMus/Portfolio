@@ -8,7 +8,6 @@ import classNames from "classnames";
 import { AboutContextValues } from "../../contexts/AboutContext";
 
 const SkillCircle: FC<ISkillCircleProps> = (props) => {
-  
   const counterRef = useRef<HTMLSpanElement>(null);
 
   const { getSectionKey, addSectionCallBack } = useContext(AboutContextValues);
@@ -36,22 +35,41 @@ const SkillCircle: FC<ISkillCircleProps> = (props) => {
   useEffect(() => {
     let intervalId = -1;
     if (isComponentInter) {
-      intervalId = asyncCounter(counterOperations, props.percent, { timeout: 1500, isEaseOut: true });
+      intervalId = asyncCounter(counterOperations, props.percent, {
+        timeout: 1500,
+        isEaseOut: true,
+      });
     }
     return () => {
       clearInterval(intervalId);
-    }
+    };
   }, [isComponentInter]);
 
-  return (
-    <div data-aboutsection={sectionKey} className={classNames("flex basis-1/3 justify-center items-center", "sm:max-md:basis-1/2", "max-sm:basis-1/2")}>
-      <div className="relative w-[175px] h-[175px]">
-        <CircleSvg {...props} isComponentInter={isComponentInter}/>
+  const componentClassNames = {
+    circle: classNames(
+      "flex basis-1/3 justify-center items-center",
+      "sm:max-md:basis-1/2",
+      "max-sm:basis-1/2"
+    ),
+    divText:
+      "bg-clip-text absolute flex flex-col gap-1 text-center text-xl !font-bold top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2",
+  };
 
-        <div
-          className="absolute flex flex-col gap-1 text-center text-xl font-bold top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          style={{ color: props.gradientColorStop || "" }}
-        >
+  const textStyles = props.gradientText
+    ? {
+        backgroundImage: `linear-gradient(to bottom, ${props.gradientColorStop}, ${props.gradientColorStart})`,
+        color: "transparent",
+      }
+    : {
+        color: `${props.gradientColorStop}`,
+      };
+
+  return (
+    <div data-aboutsection={sectionKey} className={componentClassNames.circle}>
+      <div className="relative w-[175px] h-[175px]">
+        <CircleSvg {...props} isComponentInter={isComponentInter} />
+
+        <div className={componentClassNames.divText} style={textStyles}>
           <span>{props.name}</span>
           <span ref={counterRef}>0%</span>
         </div>
